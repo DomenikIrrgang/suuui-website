@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "What SuuUI works alongside, what overlaps with it, and what's still being checked in this beta of the WoW Forever addon.",
 };
 
-type AddonRow = { name: string; text: string; placeholder?: boolean };
+type AddonRow = { name: string; text: string };
 
 const addonLists: { id: string; title: string; intro: string; rows: AddonRow[] }[] = [
   {
@@ -34,9 +34,6 @@ const addonLists: { id: string; title: string; intro: string; rows: AddonRow[] }
     rows: [
       { name: "DBM", text: "Its boss timers ride on SuuUI's encounter timeline." },
       { name: "BigWigs", text: "The same: its timers feed the timeline." },
-      // TODO: fill in from the design's placeholders once the addons are known.
-      { name: "[ADDON NAME]", text: "[What works together]", placeholder: true },
-      { name: "[ADDON NAME]", text: "[What works together]", placeholder: true },
     ],
   },
   {
@@ -50,8 +47,6 @@ const addonLists: { id: string; title: string; intro: string; rows: AddonRow[] }
         name: "Unit and raid frames, nameplates, bars, bags, chat",
         text: "Turn off SuuUI's module for that part to keep your other addon.",
       },
-      // TODO: fill in from the design's placeholder once the addon is known.
-      { name: "[ADDON NAME]", text: "[Which SuuUI module to turn off]", placeholder: true },
     ],
   },
 ];
@@ -120,7 +115,7 @@ export default async function CompatibilityPage() {
               <ul className={s.addons}>
                 {list.rows.map((row, i) => (
                   <li key={i} className={s.addon}>
-                    <span className={cx(s.addonName, row.placeholder && s.placeholder)}>{row.name}</span>
+                    <span className={s.addonName}>{row.name}</span>
                     <span className={s.addonText}>{row.text}</span>
                   </li>
                 ))}
