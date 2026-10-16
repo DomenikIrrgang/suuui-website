@@ -8,6 +8,8 @@ RUN npm ci
 FROM node:24-alpine AS build
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
+# Base URL for page metadata, baked into the prerendered pages.
+ARG SITE_URL
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build

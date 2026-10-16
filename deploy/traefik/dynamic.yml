@@ -1,0 +1,24 @@
+http:
+  routers:
+    app:
+      rule: Host(`suuui.dev`)
+      entryPoints: [websecure]
+      service: app
+    www:
+      rule: Host(`www.suuui.dev`)
+      entryPoints: [websecure]
+      middlewares: [www-to-apex]
+      service: noop@internal
+
+  middlewares:
+    www-to-apex:
+      redirectRegex:
+        regex: "^https://www\\.suuui\\.dev/(.*)"
+        replacement: "https://suuui.dev/${1}"
+        permanent: true
+
+  services:
+    app:
+      loadBalancer:
+        servers:
+          - url: http://app:3000

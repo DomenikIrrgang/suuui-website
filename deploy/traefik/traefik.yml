@@ -1,0 +1,47 @@
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+log:
+  level: INFO
+
+accessLog: {}
+
+entryPoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    address: ":443"
+    http:
+      tls:
+        certResolver: letsencrypt
+        domains:
+          - main: suuui.dev
+            sans:
+              - www.suuui.dev
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: domenikirrgang@gmail.com
+      storage: /acme/acme.json
+      dnsChallenge:
+        provider: digitalocean
+        # DigitalOcean's anycast nameservers cache NXDOMAIN when asked about
+        # the challenge record before it reaches them, so give it time first.
+        propagation:
+          delayBeforeChecks: 120s
+        resolvers:
+          - "1.1.1.1:53"
+          - "8.8.8.8:53"
+
+# Routes are static, so the file provider is enough and Traefik never needs
+# access to the Docker socket.
+providers:
+  file:
+    filename: /etc/traefik/dynamic.yml

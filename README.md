@@ -75,3 +75,40 @@ docker run -p 3000:3000 suuui-website
   address, which the hourly refresh stays well within.
 - Each running server keeps its own cache of the pages it refreshes. With several replicas, each one checks GitHub
   on its own; that's fine at one request an hour each.
+
+## Deployment
+
+https://suuui.dev runs on the `suuui` droplet (fra1) as a Docker Compose stack in `/opt/suuui`: Traefik in front,
+with a Let's Encrypt certificate for `suuui.dev` and `www.suuui.dev` (DNS challenge through DigitalOcean DNS), and
+the app behind it. `www` redirects to the apex.
+
+Every push to `main` runs `.github/workflows/deploy.yml`, which:
+
+1. builds the image and pushes it to `registry.digitalocean.com/suuui/suuui-website:<commit sha>`,
+2. SSHes in as `deploy`, whose key can only run `suuui-deploy <sha>`: it pulls the tag, starts it, waits for the
+   health check and rolls back to the previous tag if it fails,
+3. keeps the newest 3 tags in the registry and starts garbage collection (the free tier holds 500 MB).
+
+| Path in repo | On the droplet |
+| --- | --- |
+| `deploy/compose.yaml` | `/opt/suuui/compose.yaml` |
+| `deploy/traefik/*.yml` | `/opt/suuui/traefik/` |
+| `deploy/deploy.sh` | `/usr/local/bin/suuui-deploy` |
+| `deploy/deploy-ssh.sh` | `/usr/local/bin/suuui-deploy-ssh` |
+
+CI only ships the image. Changes to these files are copied over by hand, on purpose, so the CI key can't change
+what runs as root:
+
+```sh
+scp deploy/compose.yaml root@suuui.dev:/opt/suuui/
+scp deploy/traefik/*.yml root@suuui.dev:/opt/suuui/traefik/
+ssh root@suuui.dev 'cd /opt/suuui && docker compose up -d'
+```
+
+Secrets, none of them in the repo:
+
+- GitHub environment `production` (main only): `DIGITALOCEAN_ACCESS_TOKEN` (registry scopes only) and
+  `DEPLOY_SSH_KEY`. `DEPLOY_HOST` and `DEPLOY_KNOWN_HOSTS` are plain variables.
+- Droplet: `/opt/suuui/secrets/do_token` (DigitalOcean token with domain scopes, for the DNS challenge) and
+  `/root/.docker/config.json` (read-only registry login). Both are root-only.
+- Certificates: `/opt/suuui/traefik/acme/acme.json`.
