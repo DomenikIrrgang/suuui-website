@@ -112,3 +112,8 @@ Secrets, none of them in the repo:
 - Droplet: `/opt/suuui/secrets/do_token` (DigitalOcean token with domain scopes, for the DNS challenge) and
   `/root/.docker/config.json` (read-only registry login). Both are root-only.
 - Certificates: `/opt/suuui/traefik/acme/acme.json`.
+
+Keep the placeholder TXT record `_acme-challenge.suuui.dev` in DigitalOcean DNS. DigitalOcean's nameservers keep
+answering "does not exist" for a while about a name that was looked up before it existed, which made the DNS
+challenge for the apex time out. With the placeholder the name always exists, and Traefik only adds its challenge
+value next to it.
