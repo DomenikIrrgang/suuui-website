@@ -74,16 +74,16 @@ const unconfirmed: { title: string; text: ReactNode }[] = [
     text: "Whether Overpower, Revenge, Riposte, Execute and the like report as usable in every combat situation. When they don't, they show as plain ready or unusable.",
   },
   {
-    title: "Group invites that ask for your role",
-    text: "Built as a notification card; still to be seen with real invites.",
+    title: "Raids with a full group",
+    text: "Raid frames, the threat meter and readiness with a full raid, and the pull countdown reaching everyone, are still to be seen.",
   },
   {
-    title: "Group Finder notes",
-    text: (
-      <>
-        Their look is checked with <Code>/suu lfgnotes</Code>; real matches are still to be seen.
-      </>
-    ),
+    title: "Map marks in a group",
+    text: "Placing, naming and following a mark is confirmed; posting one to your group and a shared mark arriving are still to be seen.",
+  },
+  {
+    title: "Holiday pins",
+    text: "A holiday's quests and vendors show on the map only while it's on; first seen with Hallow's End.",
   },
   {
     title: "Battleground entry",

@@ -22,7 +22,7 @@ const getTopics = (interfaceVersion: string): Topic[] => [
     questions: [
       {
         q: "What is SuuUI?",
-        a: "A full interface replacement for WoW Forever, the classic-era game on the modern engine. It rebuilds unit frames, group frames, nameplates, action bars, cooldowns, chat, bags and Blizzard's windows in one design, and stays quiet until something needs your attention.",
+        a: "A full interface replacement for WoW Forever, the classic-era game on the modern engine. It rebuilds unit frames, group frames, nameplates, action bars, cooldowns, chat, bags, the world map and Blizzard's windows in one design, and stays quiet until something needs your attention.",
       },
       {
         q: "Which version of the game does it work with?",
@@ -36,8 +36,9 @@ const getTopics = (interfaceVersion: string): Topic[] => [
         q: "Is it finished?",
         a: (
           <>
-            It&apos;s in beta. The combat HUD, everyday play and most of Blizzard&apos;s windows are done; the world
-            map is next, then the quest log, mail, merchant, trainer, auction house and collections. The{" "}
+            It&apos;s in beta. The combat HUD, everyday play, most of Blizzard&apos;s windows and the world map with
+            its pins are done. Merchant, mail and trainer are next, with first versions in testing, then the auction
+            house and collections. The{" "}
             <Link href="/#roadmap">roadmap</Link> shows where things stand.
           </>
         ),
@@ -87,8 +88,8 @@ const getTopics = (interfaceVersion: string): Topic[] => [
         a: (
           <>
             Yes. Every feature is a module. Turn one off under General › Modules, or with{" "}
-            <Code>/suu disable &lt;id&gt;</Code>, and Blizzard&apos;s own frame comes back. A few take effect after a
-            reload; their row says so.
+            <Code>/suu disable &lt;id&gt;</Code>, and Blizzard&apos;s own frame comes back. <Code>/suu modules</Code>{" "}
+            lists every module with its id. A few take effect after a reload; their row says so.
           </>
         ),
       },
@@ -102,8 +103,8 @@ const getTopics = (interfaceVersion: string): Topic[] => [
         q: "How do I move frames?",
         a: (
           <>
-            Type <Code>/suu edit</Code>, or press Edit layout under General › Appearance. Drag frames on the snap
-            grid, and reset one frame or all of them.
+            Type <Code>/suu edit</Code>, press Edit layout under General › Appearance, or right-click the Jewel on the
+            minimap. Drag frames on the snap grid, and reset one frame or all of them.
           </>
         ),
       },

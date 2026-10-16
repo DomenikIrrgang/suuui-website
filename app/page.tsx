@@ -4,7 +4,7 @@ import { ClipFrames } from "@/components/demo/ClipFrames";
 import { ClipGroupFinder } from "@/components/demo/ClipGroupFinder";
 import { ClipMeters } from "@/components/demo/ClipMeters";
 import { ClipNameplates } from "@/components/demo/ClipNameplates";
-import { ClipSettings } from "@/components/demo/ClipSettings";
+import { ClipWorldMap } from "@/components/demo/ClipWorldMap";
 import { LiveHud } from "@/components/demo/LiveHud";
 import { Crest, markHost } from "@/components/Mark";
 import {
@@ -48,7 +48,7 @@ const pillars = [
 const highlights: { title: string; text: string; Clip: ComponentType }[] = [
   {
     title: "Unit and group frames",
-    text: "Player, target, focus and boss frames, and group frames up to 40 players. Debuffs you can remove show by type, even in combat.",
+    text: "Player, target, focus and boss frames, and group frames up to 40 players. Debuffs you can remove show by type and defensives beside each bar, even in combat.",
     Clip: ClipFrames,
   },
   {
@@ -67,14 +67,14 @@ const highlights: { title: string; text: string; Clip: ComponentType }[] = [
     Clip: ClipMeters,
   },
   {
-    title: "Group Finder",
-    text: "One list of groups from the game's group finder and from public chat in multiple languages, with what each group still needs.",
-    Clip: ClipGroupFinder,
+    title: "World map",
+    text: "Pins for everything around you: quests you can pick up, dungeon entrances with their levels, flight masters, trainers and rares. Hover a quest and its pins stand out.",
+    Clip: ClipWorldMap,
   },
   {
-    title: "Settings and edit mode",
-    text: "Search every option and see each change live, at real size. Move every frame on a snap grid, and switch profiles by role.",
-    Clip: ClipSettings,
+    title: "Group Finder",
+    text: "One list of groups from the game's group finder and from public chat in English, Korean and Chinese, with what each group still needs.",
+    Clip: ClipGroupFinder,
   },
 ];
 
@@ -106,7 +106,7 @@ const signals: { tag: string; color?: string; title: string; text: string }[] = 
     tag: "Warded",
     color: "var(--ward)",
     title: "Protected",
-    text: "A big defensive, an external or a shield is active on the unit.",
+    text: "A big defensive or an external is up on the unit: Shield Wall, Ice Block, Blessing of Protection.",
   },
   {
     tag: "Magic",
@@ -118,24 +118,24 @@ const signals: { tag: string; color?: string; title: string; text: string }[] = 
 
 const newInBeta = [
   {
-    title: "Group Finder.",
-    text: "Forever's group finder rebuilt, with groups posted in public chat in multiple languages joining the same list. List yourself, post a chat ad and search Who.",
+    title: "World map.",
+    text: "Forever's world map in SuuUI's look. It opens large in the middle of the screen, with your quest log beside it and the world still in view.",
   },
   {
-    title: "Talents and Legacy.",
-    text: "Plan your points across the three trees, then press Apply. The Legacy window shows your challenges and the reward track.",
+    title: "Map pins.",
+    text: "Quests you can pick up, dungeon and raid entrances with their levels, flight masters, trainers, rares and treasures, with filters in the map's header.",
   },
   {
-    title: "Professions.",
-    text: "Recipe lists with filters and sorting, where a recipe you don't know yet is learned, and tracked recipes in the objective tracker.",
+    title: "Map marks.",
+    text: "Ctrl+click the map to place your own mark, follow it with the game's arrow, and post it to your group.",
   },
   {
-    title: "Social and Guild.",
-    text: "Friends, recent allies and raid groups you rearrange by dragging; the guild roster, notes, log and settings.",
+    title: "Defensives and Warded.",
+    text: "Party and raid frames show real defensives, from a list you control, and the big ones mark the frame Warded.",
   },
   {
-    title: "Menus and invites.",
-    text: "Right-click menus in SuuUI's look, and group invites that ask for your role as a notification.",
+    title: "Buffs and debuffs apart.",
+    text: "On target, focus, party and raid frames, buffs and debuffs each keep their own side, yours first.",
   },
 ];
 
@@ -156,7 +156,7 @@ const steps: { title: string; text: ReactNode }[] = [
     title: "Make it yours",
     text: (
       <>
-        Type <Code>/suu</Code> to open the settings, place your frames with Edit layout and load your spec&apos;s
+        Type <Code>/suu</Code> to open the settings, place your frames with Edit layout and check your spec&apos;s
         Cooldown Manager preset.
       </>
     ),
@@ -200,10 +200,10 @@ const roadmap: { phase: string; title: string; items: { status: Status; text: st
     items: [
       {
         status: "done",
-        text: "Character, spellbook, talents and Legacy, professions, social and guild, group finder",
+        text: "Character, spellbook, talents and Legacy, professions, social and guild, group finder, world map, quest log and map pins",
       },
-      { status: "next", text: "World map and map pins" },
-      { status: "planned", text: "Quest log, mail, merchant, trainer, auction house, collections" },
+      { status: "next", text: "Merchant, mail and trainer: first versions in testing" },
+      { status: "next", text: "Auction house and collections" },
     ],
   },
   {
@@ -284,8 +284,8 @@ export default async function HomePage() {
           id="features-title"
         />
         <Sublead>
-          From unit frames and nameplates to bags, chat and Blizzard&apos;s own windows, every frame is rebuilt in one
-          design.
+          From unit frames and nameplates to bags, chat, the world map and Blizzard&apos;s own windows, every frame is
+          rebuilt in one design.
         </Sublead>
         <Grid min={320} className={s.highlights}>
           {highlights.map((item) => (
@@ -339,8 +339,8 @@ export default async function HomePage() {
               Version {latestRelease.version} · {formatDate(latestRelease.date)}
             </p>
             <Sublead className={s.newLead}>
-              Forever&apos;s own windows join the design: the group finder, talents and Legacy, professions, social
-              and guild.
+              The world map joins the design, with pins for everything around you, and party and raid frames learn
+              which buffs are real defensives.
             </Sublead>
             <ButtonLink href="/changelog" className={s.newButton}>
               Read the changelog

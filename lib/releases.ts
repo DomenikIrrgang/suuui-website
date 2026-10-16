@@ -35,6 +35,13 @@ export type ReleaseData = {
  * its notes, so this only needs an entry when that summary should read differently.
  */
 const SUMMARIES: Record<string, string> = {
+  "0.4.0-beta.5":
+    "Defensives and Warded on party and raid frames, and buffs and debuffs apart on target, focus, party and raid frames.",
+  "0.4.0-beta.4":
+    "Online notes for friends and guild members, Battle.net invites that work, and aggro alerts only when someone holds the mobs.",
+  "0.4.0-beta.3": "Quest markers on the world map show on every character.",
+  "0.4.0-beta.2": "Skyborne characters see the quests they can pick up, and money without trailing zero coins.",
+  "0.4.0-beta.1": "The world map in SuuUI's look, with map pins, an enlarged map and your own map marks.",
   "0.3.0-beta.1":
     "The Group Finder, Talents and Legacy windows, Professions, Social and Guild windows, and right-click menus in SuuUI's look.",
   "0.2.0-beta.2": "SuuUI on Wago Addons too; the addon is unchanged.",
@@ -47,6 +54,11 @@ const zipUrlFor = (version: string) => `${links.releases}/download/v${version}/$
 /** What the site shows when GitHub can't be reached while building. Update it now and then. */
 const SNAPSHOT: ReleaseData = (() => {
   const releases: Release[] = [
+    { version: "0.4.0-beta.5", date: "2026-10-16" },
+    { version: "0.4.0-beta.4", date: "2026-10-16" },
+    { version: "0.4.0-beta.3", date: "2026-10-16" },
+    { version: "0.4.0-beta.2", date: "2026-10-16" },
+    { version: "0.4.0-beta.1", date: "2026-10-16" },
     { version: "0.3.0-beta.1", date: "2026-10-15" },
     { version: "0.2.0-beta.2", date: "2026-10-13" },
     { version: "0.2.0-beta.1", date: "2026-10-13" },

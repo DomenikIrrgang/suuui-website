@@ -24,6 +24,12 @@
   --unit-fill: #6e604b;
   --unit-fill-deep: #4a3f31;
 
+  --quest-difficult: #ffd100;
+  --quest-standard: #40bf40;
+  --quest-trivial: #808080;
+  --coin-silver: #c7c7cf;
+  --mark-star: #fff27a;
+
   --radius-sm: 2px;
   --radius-md: 3px;
 

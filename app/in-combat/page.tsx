@@ -26,6 +26,10 @@ const groups: { id: string; mark: Mark; title: string; band?: boolean; rows: { t
         text: "Drawn by the game's own aura frames, with SuuUI choosing which kinds show where. In dungeon combat no addon can tell which spell an aura is, so lists like the Cooldown Manager's are filtered by the game itself.",
       },
       {
+        term: "Defensives and Warded on group frames",
+        text: "The game hides who cast another player's buffs, and its own defensive filters let almost every buff through. So SuuUI goes by its own Defensives list, whose spells the game matches in combat too. Warded shows when a big one is up.",
+      },
+      {
         term: "Incoming heals and absorbs",
         text: "Shown after the health bar, from the game's own heal prediction.",
       },

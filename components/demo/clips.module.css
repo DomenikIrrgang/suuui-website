@@ -913,3 +913,131 @@
   background: var(--arcane);
   color: var(--on-signal);
 }
+
+/* ---------- World map ---------- */
+
+.mapFilters {
+  margin-left: auto;
+  font-size: 2.4cqw;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.map {
+  position: absolute;
+  left: 2.4cqw;
+  right: 2.4cqw;
+  top: 8.6cqw;
+  bottom: 2.4cqw;
+  overflow: hidden;
+  background: #1b1d29;
+  border: 1px solid var(--gilt-faint);
+  border-radius: var(--radius-sm);
+}
+
+.mapArt {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mapPin,
+.mapPinSmall {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid var(--gilt-line);
+  border-radius: 50%;
+  background: var(--surface);
+  transform: translate(-50%, -50%);
+}
+
+.mapPin {
+  width: 3.6cqw;
+  height: 3.6cqw;
+}
+
+.mapPinSmall {
+  width: 2.9cqw;
+  height: 2.9cqw;
+}
+
+.mapGlyph {
+  width: 65%;
+  height: 65%;
+}
+
+.mapChar {
+  font-size: 2.3cqw;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.mapCard {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5cqw;
+  padding: 1.4cqw 1.8cqw;
+  white-space: nowrap;
+  background: rgba(19, 17, 22, 0.96);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-panel);
+}
+
+.mapCardTitle {
+  font-family: var(--font-display);
+  font-size: 2.6cqw;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.mapCardLine {
+  font-size: 2.1cqw;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.mapCardButton {
+  align-self: flex-start;
+  margin-top: 0.6cqw;
+  padding: 0.5cqw 1.4cqw;
+  font-size: 2cqw;
+  font-weight: 600;
+  color: var(--ink);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+}
+
+.mapCursor {
+  position: absolute;
+  width: 3cqw;
+  height: 3cqw;
+  margin: -0.4cqw 0 0 -0.6cqw;
+  transform-origin: 0 0;
+}
+
+.mapCursorArrow {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 1px 1px #00000099);
+}
+
+.mapCursorHint {
+  position: absolute;
+  left: 3.2cqw;
+  top: 2.6cqw;
+  padding: 0.3cqw 0.9cqw;
+  font-size: 1.9cqw;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--on-signal);
+  background: var(--ink);
+  border-radius: var(--radius-sm);
+}

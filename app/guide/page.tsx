@@ -28,7 +28,7 @@ const steps: { title: string; text: ReactNode[]; clip?: ReactNode }[] = [
     text: [
       <>
         Type <Code>/suu</Code>, click the Jewel on the minimap&apos;s ring, or open it from the game menu. The search
-        box in its header finds any option.
+        box in its header finds any option. Right-click the Jewel to go straight to Edit layout.
       </>,
       "Every change applies as you make it, and the section's real frames update in the preview beside it, at their real size. There's no Apply button.",
     ],
@@ -36,7 +36,9 @@ const steps: { title: string; text: ReactNode[]; clip?: ReactNode }[] = [
   },
   {
     title: "Set the size",
-    text: ["Under General › Appearance, pick the UI scale. SuuUI keeps its hairlines one pixel sharp at any scale."],
+    text: [
+      "Under General › Appearance, Automatic scale is on: 100% up to 1440p, larger on taller screens. Turn it off to set your own scale. SuuUI keeps its hairlines one pixel sharp at any scale.",
+    ],
   },
   {
     title: "Place your frames",
@@ -52,10 +54,10 @@ const steps: { title: string; text: ReactNode[]; clip?: ReactNode }[] = [
     title: "Bind your keys",
     text: [
       <>
-        Type <Code>/suu keybind</Code>, hover an action button and press a key, a mouse button or the wheel. Delete
-        clears a binding.
+        Type <Code>/suu keybind</Code>, or press Keybind mode under General › Keybinds. Hover an action button and
+        press a key, a mouse button or the wheel. Delete clears a binding.
       </>,
-      "Bars 5–8 stay hidden until they hold something. Each bar can show always, only in combat, or on mouseover.",
+      "Bars 5–8 start hidden: turn each one on with Show under Frames › Action bars. Each bar can show always, only in combat, or on mouseover.",
     ],
   },
   {

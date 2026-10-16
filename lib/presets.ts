@@ -19,4 +19,4 @@ export type PresetClass = { id: string; name: string; color: string; specs: Pres
 
 export const presets: PresetClass[] = data;
 
-export const presetsVersion = "0.3.0-beta.1";
+export const presetsVersion = "0.4.0-beta.5";

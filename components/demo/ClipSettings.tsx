@@ -32,7 +32,7 @@ export function ClipSettings({ ratio }: { ratio?: Ratio }) {
                 <span className={s.changedMark} style={{ opacity: on ? 1 : 0 }} />
                 Low-health tint
               </span>
-              <span className={s.optionHelp}>The empty part of a hurt unit&apos;s bar fills with ember, stronger the lower they are.</span>
+              <span className={s.optionHelp}>The empty part of the bar warms to ember from 70% down, strongest at 10%.</span>
             </div>
             <span
               className={s.switch}

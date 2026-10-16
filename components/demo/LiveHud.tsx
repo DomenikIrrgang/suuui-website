@@ -44,7 +44,7 @@ function captionAt(t: number) {
   if (t >= 80 && t < 94) return "The tank takes the boss back. Earth Shock counts down in the Cooldown Manager.";
   if (t >= 94 && t < 98) return "Your interrupt is ready again: it pops back with an arcane edge.";
   if (t >= 98) return "The fight ends and everything settles back to rest.";
-  return "Out of combat, every frame rests at 60%. Nothing asks for your attention.";
+  return "Out of combat, your unit frames rest at 60%. Nothing asks for your attention.";
 }
 
 /** The home page's live HUD: one dungeon pull, 12 seconds, on a loop. */

@@ -1,1 +1,1 @@
-SuuUI 0.3.0-beta.1: Group Finder, Talents and Legacy, Professions, Social and Guild.
+SuuUI 0.4.0-beta.5: Defensives, Warded, and buffs and debuffs apart.

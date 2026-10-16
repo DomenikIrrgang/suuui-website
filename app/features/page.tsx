@@ -5,6 +5,7 @@ import { ClipFrames } from "@/components/demo/ClipFrames";
 import { ClipMeters } from "@/components/demo/ClipMeters";
 import { ClipNotifications } from "@/components/demo/ClipNotifications";
 import { ClipTalents } from "@/components/demo/ClipTalents";
+import { ClipWorldMap } from "@/components/demo/ClipWorldMap";
 import { PresetsDemo } from "@/components/demo/PresetsDemo";
 import {
   ButtonLink,
@@ -26,7 +27,7 @@ type ClipProps = { ratio?: "16 / 10" | "21 / 9" };
 export const metadata: Metadata = {
   title: "Features",
   description:
-    "Unit frames, nameplates, action bars, cooldowns, casts and auras in one visual language, plus chat, bags and Blizzard's windows.",
+    "Unit frames, nameplates, action bars, cooldowns, casts and auras in one visual language, plus the world map, chat, bags and Blizzard's windows.",
 };
 
 type Feature = { title: string; text: string; isNew?: boolean; link?: { label: string; href: string } };
@@ -49,11 +50,16 @@ const groups: {
     features: [
       {
         title: "Unit frames",
-        text: "Player, target, target of target, focus, pet and boss frames. Health as percent, value, both or none; a gradual low-health tint; incoming heals and absorbs; debuff-type borders and badges; raid target markers; adjustable size.",
+        text: "Player, target, target of target, focus, pet and boss frames. Health as percent, value, both or none; a gradual low-health tint; incoming heals and absorbs; debuff-type borders and badges; raid target markers; offline state; adjustable size. Target and focus show buffs and debuffs apart, yours first.",
       },
       {
         title: "Party and raid frames",
-        text: "Secure group frames for 5, 10, 20 and 40 players, with real-size previews in the settings. Debuffs you can remove show by type even in combat, with aggro, range fading, class-coloured names and sorting by role.",
+        text: "Secure group frames for 5, 10, 20 and 40 players, with real-size previews in the settings. Debuffs you can remove show by type even in combat, with aggro, range fading, class-coloured names and sorting by role. Defensives and debuffs sit in their own groups beside each bar.",
+      },
+      {
+        title: "Defensives",
+        isNew: true,
+        text: "A list you control of the buffs that count as defensives, every rank: Blessing of Protection, Shield Wall, Ice Block and more. They show beside party and raid frames, and the big ones mark the frame Warded, in combat too.",
       },
       {
         title: "Buff indicators",
@@ -90,7 +96,7 @@ const groups: {
       },
       {
         title: "Cooldown Manager",
-        text: "SuuUI's own cooldown and aura tracker, with ready-made presets for every class and spec. Shared slots, reminders for missing buffs, sounds, and conditions on anything: group or raid, role, stance or form, combat, instance, target type and talents.",
+        text: "SuuUI's own cooldown and aura tracker, with ready-made presets for every class and spec. Shared slots (one icon for several spells, or the best spell you know), collections, reminders for missing buffs, effects shown on cooldown icons, sounds, and conditions on anything: group or raid, classes in your group, role, stance or form, combat, instance, target type and talents.",
         link: { label: "Watch your spec's preset", href: "#presets" },
       },
       {
@@ -134,7 +140,7 @@ const groups: {
         text: "One stack for repairs, full bags, ready checks, loot rolls, requests, battlegrounds, and friends and guild members coming online.",
       },
       { title: "Loot and tooltips", text: "The loot window and loot rolls, and the game's tooltips in SuuUI's look." },
-      { title: "Campsite", text: "Alerts for Campfire's camp benefits while a fire is near." },
+      { title: "Campsite", text: "Alerts at a campfire: one nearby, resting by it, and Camp Benefits gained." },
       {
         title: "Settings window",
         text: "Searchable, every change live, previews at real size and plain-language descriptions.",
@@ -160,23 +166,42 @@ const groups: {
       },
       {
         title: "Professions",
-        isNew: true,
         text: "Your professions at a glance, recipe lists with filters, where each recipe is learned, and tracking.",
       },
       {
         title: "Social",
-        isNew: true,
         text: "Friends, recent allies and friend requests. Raid groups where you drag members between groups.",
       },
       {
         title: "Guild",
-        isNew: true,
         text: "Guild chat with the message of the day, a roster with class, notes and member details, the guild information and log, and guild settings: ranks, permissions, bank tabs.",
       },
       {
         title: "Group Finder",
+        text: "One list of groups and players looking for groups, from the game's group finder and from public chat in English, Korean and Chinese, with what each group has and still needs. List yourself, post a chat ad, search Who, and get notes for groups that need you.",
+      },
+    ],
+  },
+  {
+    id: "map",
+    title: "World map",
+    intro: "Forever's world map in SuuUI's look, with everything around you on it.",
+    Clip: ClipWorldMap,
+    features: [
+      {
+        title: "World map",
         isNew: true,
-        text: "One list of groups and players looking for groups, from the game's group finder and from public chat in multiple languages, with what each group has and still needs. List yourself, post a chat ad, search Who, and get notes for groups that need you.",
+        text: "Opens large in the middle of the screen with your quest log beside it and the world still in view, or small under the micro menu. Your quests' markers in SuuUI's look, and map filters in its header.",
+      },
+      {
+        title: "Map pins",
+        isNew: true,
+        text: "Quests you can pick up now, also those started by dropped items; dungeon and raid entrances with their levels; flight masters, services and trainers; rares and treasures; holiday quests while the holiday is on; and unexplored areas. Hover a quest and its pins stand out.",
+      },
+      {
+        title: "Map marks",
+        isNew: true,
+        text: "Your own marks on the map and minimap (Ctrl+click): a name, one of eight symbols, the game's navigation arrow to them, and posting them to your group.",
       },
     ],
   },
@@ -267,7 +292,7 @@ export default async function FeaturesPage() {
         </Fragment>
       ))}
 
-      <Section id="next" aria-labelledby="next-title">
+      <Section id="next" aria-labelledby="next-title" band>
         <div className={s.next}>
           <div className={s.nextIntro}>
             <Heading id="next-title" className={s.nextTitle}>
@@ -284,8 +309,8 @@ export default async function FeaturesPage() {
             className={s.nextList}
             itemClassName={s.nextItem}
             items={[
-              { status: "next", text: "World map and map pins" },
-              { status: "planned", text: "Quest log, mail, merchant, trainer, auction house and collections" },
+              { status: "next", text: "Merchant, mail and trainer: first versions in testing" },
+              { status: "next", text: "Auction house and collections" },
               {
                 status: "planned",
                 text: "Density and accessibility presets, a performance and taint pass, and a plugin developer kit",

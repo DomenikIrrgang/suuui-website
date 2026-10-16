@@ -56,7 +56,7 @@ wowlua dev
 const resources: { title: string; text: ReactNode; href: string; cta: string }[] = [
   {
     title: "Plugin API",
-    text: "Modules, settings and migrations, the settings window, edit mode, events, components such as unit frames, cast bars and aura containers, and the design tokens. Versioned, so a plugin says which API it needs.",
+    text: "Modules, settings and migrations, the settings window, edit mode, events, components such as unit frames, cast bars, aura containers, windows and map pins, and the design tokens. Versioned, now 0.16, so a plugin says which API it needs.",
     href: links.apiDocs,
     cta: "Read Docs/API.md",
   },
@@ -96,8 +96,10 @@ const layout = [
   { path: "src/SettingsUI", text: "The settings window and its sections" },
   { path: "src/EditMode", text: "Moving frames on a snap grid" },
   { path: "src/Units", text: "The built-in modules: frames, bars, chat, bags, windows, guild, group finder" },
+  { path: "src/Libs", text: "ForeverLFG, the group finder library" },
   { path: "src/Data", text: "Generated data: Cooldown Manager presets, talents, the aura catalog, recipe sources" },
-  { path: "tools", text: "Generators for the presets and data" },
+  { path: "src/Diagnostics", text: "Probes that read the live client" },
+  { path: "tools", text: "Generators for the presets and data, and the chat parser replay (run with Lua)" },
   { path: "wowlua.json", text: "The build: TOC fields, assets, release profiles and publish targets" },
 ];
 

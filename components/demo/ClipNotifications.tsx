@@ -33,7 +33,7 @@ export function ClipNotifications({ ratio }: { ratio?: Ratio }) {
             <svg viewBox="0 0 24 24" fill="none" stroke="#A39B8B" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className={s.toastNoteIcon}>
               <path d="M7 3h10M7 21h10M8 3v3l4 6-4 6v3M16 3v3l-4 6 4 6v3" />
             </svg>
-            Goes when a slot is free
+            Goes when you free a slot
           </span>
         </div>
       </div>
@@ -60,18 +60,25 @@ export function ClipNotifications({ ratio }: { ratio?: Ratio }) {
         <span className={s.drain} style={{ width: shown ? `${Math.round(100 - (t - 10) * (100 / 30))}%` : "100%" }} />
       </div>
 
-      <div className={s.toast} style={{ top: slot ? "42.4cqw" : "22cqw", transition: `top 180ms ${IN_OUT}` }}>
+      <div
+        className={s.toast}
+        style={{ top: slot ? "42.4cqw" : "22cqw", padding: "2.2cqw", borderColor: "var(--amber)", transition: `top 180ms ${IN_OUT}` }}
+      >
         <span className={`${s.toastIcon} ${s.toastIconGlyph}`}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="#3FD0FF" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className={s.toastGlyph}>
-            <path d="M5 12.5l4.5 4.5L19 7" />
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FFB23F" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className={s.toastGlyph}>
+            <path d="M6.5 7.5L10.5 3.5H21.5L17.5 7.5ZM6.5 7.5V12H17.5V7.5M17.5 12L21.5 8V3.5M6.5 7.5L1.5 9.5L6.5 11M9 12L10 16.5M15 12L14 16.5M6 16.5H18L19.5 21H4.5Z" />
           </svg>
         </span>
         <div className={s.toastText}>
-          <span className={s.toastKind}>Quest</span>
-          <span className={s.toastTitle}>Quest complete</span>
-          <span className={s.toastKind}>Ember pelts · 10/10</span>
+          <span className={s.toastKind}>Durability</span>
+          <span className={s.toastTitle}>Your gear is badly damaged</span>
+          <span className={s.toastNote}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#A39B8B" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className={s.toastNoteIcon}>
+              <path d="M7 3h10M7 21h10M8 3v3l4 6-4 6v3M16 3v3l-4 6 4 6v3" />
+            </svg>
+            Goes when you repair
+          </span>
         </div>
-        <span className={s.drain} style={{ width: `${Math.round(100 - t * (100 / 60))}%` }} />
       </div>
     </ClipFrame>
   );
