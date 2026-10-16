@@ -1,0 +1,58 @@
+/* Shared parts of the live demo and the motion clips. */
+
+.clip {
+  margin: 0;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--world);
+  border: 1px solid var(--gilt-hairline);
+  border-radius: var(--radius-md);
+  color: var(--ink);
+}
+
+/* 16:10, as tall as the frame and centred, so a 21:9 frame just shows more world at the sides. */
+.stage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  aspect-ratio: 16 / 10;
+  container-type: inline-size;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.clipToggle {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  background: rgba(19, 17, 22, 0.9);
+}
+
+.iconLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.icon {
+  position: absolute;
+  left: -8%;
+  top: -8%;
+  width: 116%;
+  height: 116%;
+  max-width: none;
+}

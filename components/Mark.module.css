@@ -1,0 +1,237 @@
+.svg {
+  display: block;
+  flex: none;
+  overflow: visible;
+}
+
+.crest {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- The gem ---------- */
+
+.mark {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.frame {
+  transition: stroke 300ms ease;
+}
+
+.f1,
+.f2,
+.f3,
+.f4 {
+  opacity: 0;
+}
+
+/* ---------- Hover shimmer, triggered by the host ---------- */
+
+.host {
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.host:focus-visible {
+  outline-offset: 4px;
+}
+
+.host:active .mark {
+  transform: scale(0.86);
+  transition-duration: 60ms;
+}
+
+.host:hover .frame,
+.host:focus-visible .frame {
+  stroke: #e6cc8a;
+}
+
+.host:hover .f1,
+.host:focus-visible .f1 {
+  animation: facet 600ms 0ms both;
+}
+
+.host:hover .f2,
+.host:focus-visible .f2 {
+  animation: facet 600ms 150ms both;
+}
+
+.host:hover .f3,
+.host:focus-visible .f3 {
+  animation: facet 600ms 250ms both;
+}
+
+.host:hover .f4,
+.host:focus-visible .f4 {
+  animation: facet 600ms 400ms both;
+}
+
+@keyframes facet {
+  0% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  30% {
+    opacity: 0.58;
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---------- Looping shimmer, for waiting states ---------- */
+
+.loop .f1 {
+  animation: loop1 1600ms 800ms infinite;
+}
+
+.loop .f2 {
+  animation: loop2 1600ms 800ms infinite;
+}
+
+.loop .f3 {
+  animation: loop3 1600ms 800ms infinite;
+}
+
+.loop .f4 {
+  animation: loop4 1600ms 800ms infinite;
+}
+
+@keyframes loop1 {
+  0% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  11.25% {
+    opacity: 0.62;
+    animation-timing-function: ease-in-out;
+  }
+  37.5%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loop2 {
+  0%,
+  9.4% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  20.6% {
+    opacity: 0.55;
+    animation-timing-function: ease-in-out;
+  }
+  46.9%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loop3 {
+  0%,
+  15.6% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  26.9% {
+    opacity: 0.4;
+    animation-timing-function: ease-in-out;
+  }
+  53.1%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loop4 {
+  0%,
+  25% {
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  36.25% {
+    opacity: 0.5;
+    animation-timing-function: ease-in-out;
+  }
+  62.5%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---------- The crest's entrance ---------- */
+
+.entrance .mark {
+  animation: pop 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.entrance .wingLeft,
+.entrance .wingRight {
+  transform-box: fill-box;
+  animation: wing 240ms 200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.entrance .wingLeft {
+  transform-origin: 100% 50%;
+}
+
+.entrance .wingRight {
+  transform-origin: 0% 50%;
+}
+
+.entrance .jewel {
+  animation: fade 180ms 440ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes wing {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark,
+  .frame,
+  .f1,
+  .f2,
+  .f3,
+  .f4,
+  .wingLeft,
+  .wingRight,
+  .jewel {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .host:active .mark {
+    transform: none;
+  }
+}

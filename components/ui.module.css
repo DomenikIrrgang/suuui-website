@@ -1,0 +1,441 @@
+/* ---------- Layout ---------- */
+
+.container {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section {
+  padding: var(--section-y) 0;
+}
+
+.sectionTight {
+  padding: var(--section-y-tight) 0;
+}
+
+.band {
+  position: relative;
+  background: rgba(32, 27, 34, 0.62);
+  border-top: 1px solid var(--gilt-line);
+  border-bottom: 1px solid var(--gilt-line);
+}
+
+.bandJewel {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  margin-left: -5.5px;
+  background: var(--surface);
+  border: 1px solid var(--gilt);
+  transform: rotate(45deg);
+}
+
+/* ---------- Type ---------- */
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrowLabel {
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  color: var(--gilt-text);
+}
+
+.eyebrowRule {
+  flex: 0 1 160px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gilt-line), rgba(201, 167, 90, 0));
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.h1 {
+  font-size: clamp(40px, 4.6vw, 64px);
+  line-height: 1.08;
+}
+
+.h2 {
+  font-size: clamp(30px, 3.2vw, 42px);
+  line-height: 1.15;
+}
+
+.h2Small {
+  font-size: clamp(28px, 2.8vw, 36px);
+  line-height: 1.15;
+}
+
+.h3 {
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.sectionTitle {
+  margin-top: 14px;
+  max-width: 760px;
+}
+
+.lead {
+  margin: 20px 0 0;
+  max-width: 680px;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.6;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+
+.sublead {
+  margin: 16px 0 0;
+  max-width: 640px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+
+.body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+}
+
+.strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 1px 6px;
+  background: var(--surface-raised);
+  border: 1px solid var(--gilt-faint);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Page intro ---------- */
+
+.intro {
+  padding: var(--section-y) 0 clamp(40px, 4vw, 56px);
+}
+
+.introCompact {
+  padding-bottom: clamp(32px, 3vw, 48px);
+}
+
+.intro .h1 {
+  margin-top: 16px;
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  transition:
+    background-color 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.primary {
+  background: var(--arcane);
+  color: var(--on-signal);
+  box-shadow: var(--glow-arcane);
+}
+
+.primary:hover {
+  color: var(--on-signal);
+  background: #6bdcff;
+  box-shadow: 0 0 14px #3fd0ff80;
+}
+
+.secondary {
+  background: var(--surface-raised);
+  color: var(--ink);
+  border: 1px solid var(--gilt-line);
+}
+
+.secondary:hover {
+  color: var(--ink);
+  border-color: var(--gilt);
+}
+
+.small {
+  min-height: 44px;
+  padding: 0 20px;
+  font-size: 15px;
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* A bare link that still meets the 44px target. */
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--min, 300px), 100%), 1fr));
+  gap: 24px;
+}
+
+/* ---------- Ornaments ---------- */
+
+.diamond {
+  flex: none;
+  display: inline-block;
+  width: var(--size, 8px);
+  height: var(--size, 8px);
+  background: var(--gilt);
+  transform: rotate(45deg);
+}
+
+.diamondOutline {
+  background: transparent;
+  border: 1px solid var(--ink-muted);
+}
+
+.diamondArcane {
+  background: var(--arcane);
+  box-shadow: var(--glow-arcane);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 9px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Screenshot frames ---------- */
+
+.shot {
+  position: relative;
+  margin: 0;
+  background: var(--world);
+  border: 1px dashed var(--gilt-hairline);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.shotCard {
+  aspect-ratio: 16 / 10;
+}
+
+.shotWide {
+  aspect-ratio: 21 / 9;
+  padding: 24px;
+}
+
+.shotHero {
+  aspect-ratio: 16 / 9;
+  padding: 24px;
+  gap: 10px;
+  overflow: visible;
+  border: 1px solid var(--gilt-line);
+  box-shadow: var(--inset-anchor), var(--shadow-panel);
+}
+
+.shotLabel {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--gilt-text);
+}
+
+.shotHero .shotLabel {
+  font-size: 15px;
+}
+
+.shotCaption {
+  max-width: 260px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+.shotWide .shotCaption {
+  max-width: 420px;
+}
+
+.shotHero .shotCaption {
+  max-width: 440px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.shotImage {
+  object-fit: cover;
+}
+
+.corner {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background: var(--surface);
+  border: 1px solid var(--gilt);
+  transform: rotate(45deg);
+}
+
+.cornerTopLeft {
+  top: -6px;
+  left: -6px;
+}
+
+.cornerBottomRight {
+  bottom: -6px;
+  right: -6px;
+}
+
+/* ---------- Roadmap status ---------- */
+
+.statusList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.statusItem {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.status {
+  flex: 0 0 104px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 26px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.statusNext {
+  color: var(--arcane);
+}
+
+.statusPlanned {
+  color: var(--ink-muted);
+}
+
+.statusText {
+  flex: 1 1 280px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.statusTextNext {
+  color: var(--ink);
+}
+
+/* ---------- Bullet lists ---------- */
+
+.bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.bullet {
+  display: flex;
+  gap: 14px;
+}
+
+.bullet > .diamond {
+  margin-top: 11px;
+}
+
+/* ---------- Code blocks ---------- */
+
+.codeBlock {
+  overflow-x: auto;
+  background: var(--surface-sunk);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-md);
+}
+
+.codeBlock pre {
+  margin: 0;
+  min-width: max-content;
+  padding: 24px 28px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.comment {
+  color: var(--ink-muted);
+}

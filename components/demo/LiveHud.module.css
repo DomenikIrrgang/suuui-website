@@ -1,0 +1,571 @@
+/* The live HUD is sized in cqw of the whole 16:9 figure. */
+
+.hud {
+  margin: 0;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  container-type: inline-size;
+  overflow: hidden;
+  background: var(--world);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--inset-anchor), var(--shadow-panel);
+  color: var(--ink);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+
+.fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+/* ---------- Party ---------- */
+
+.partyHeader {
+  position: absolute;
+  left: 3cqw;
+  top: 6.6cqw;
+  width: 18cqw;
+  display: flex;
+  align-items: center;
+  gap: 0.7cqw;
+  transition: opacity 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.partyLabel {
+  font-family: var(--font-display);
+  font-size: 1.16cqw;
+  letter-spacing: 0.08em;
+  color: var(--gilt-text);
+  text-shadow: 0 1px 2px #000000b3;
+}
+
+.partyRule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gilt-line), rgba(201, 167, 90, 0));
+}
+
+.unit {
+  position: absolute;
+  left: 3cqw;
+  width: 18cqw;
+  height: 2.5cqw;
+  border: 1px solid var(--gilt-hairline);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunk);
+  overflow: hidden;
+  transition:
+    opacity 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ghost {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba(241, 234, 219, 0.5);
+}
+
+.incoming {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--fel-incoming);
+}
+
+.power {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0.18cqw;
+}
+
+.unitRow {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.55cqw;
+  padding: 0 0.7cqw;
+  text-shadow: 0 1px 1px #00000099;
+}
+
+.role {
+  flex: none;
+  width: 1.1cqw;
+  height: 1.1cqw;
+}
+
+.unitName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 1.2cqw;
+  letter-spacing: 0.02em;
+}
+
+.badge {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  height: 1.34cqw;
+  padding: 0 0.45cqw;
+  border-radius: var(--radius-sm);
+  color: var(--on-signal);
+  font-family: var(--font-display);
+  font-size: 0.94cqw;
+  letter-spacing: 0.04em;
+  text-shadow: none;
+}
+
+.unitPct {
+  flex: none;
+  font-size: 1.07cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+/* ---------- Aggro alert ---------- */
+
+.alert {
+  position: absolute;
+  left: 50%;
+  top: 8.4cqw;
+  transition:
+    opacity 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2cqw;
+  padding: 0.75cqw 2cqw;
+  background: #2a1310;
+  border-top: 1px solid var(--ember);
+  border-bottom: 1px solid var(--ember);
+  box-shadow: 0 0 10px #ff5a3673;
+  white-space: nowrap;
+}
+
+.alertTipLeft,
+.alertTipRight {
+  position: absolute;
+  top: 50%;
+  width: 0.8cqw;
+  height: 0.8cqw;
+  margin-top: -0.4cqw;
+  background: var(--ember);
+  transform: rotate(45deg);
+}
+
+.alertTipLeft {
+  left: -0.45cqw;
+}
+
+.alertTipRight {
+  right: -0.45cqw;
+}
+
+.alertTitle {
+  font-family: var(--font-display);
+  font-size: 1.6cqw;
+  letter-spacing: 0.03em;
+  color: #ff9a80;
+}
+
+.alertFacts {
+  font-size: 1.1cqw;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+/* ---------- Cooldown Manager ---------- */
+
+.buffs {
+  position: absolute;
+  left: calc(50% - 2.9cqw);
+  top: 24.2cqw;
+  display: flex;
+  gap: 0.4cqw;
+  transition: opacity 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.buff {
+  position: relative;
+  width: 2.7cqw;
+  height: 2.7cqw;
+  border: 1px solid var(--gilt-hairline);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--surface-sunk);
+}
+
+.buffBar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0.18cqw;
+  background: var(--ink);
+}
+
+.buffTime {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.25cqw;
+  text-align: center;
+  font-size: 0.85cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  text-shadow: 0 0 2px #000, 0 1px 1px #000;
+}
+
+.essential {
+  position: absolute;
+  left: 41.97cqw;
+  top: 27.8cqw;
+  display: flex;
+  gap: 0.55cqw;
+  transition: opacity 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cooldown {
+  position: relative;
+  width: 3.6cqw;
+  height: 3.6cqw;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--surface-sunk);
+}
+
+.sweep {
+  position: absolute;
+  inset: 0;
+}
+
+.digits {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  text-shadow: 0 0 2px #000, 0 1px 1px #000;
+}
+
+/* ---------- Cast bars ---------- */
+
+.playerCast {
+  position: absolute;
+  left: 37.5cqw;
+  top: 32.6cqw;
+  width: 25cqw;
+  height: 2.15cqw;
+  display: flex;
+  transition: opacity 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.castIcon {
+  position: relative;
+  flex: none;
+  width: 2.15cqw;
+  height: 2.15cqw;
+  border: 1px solid var(--gilt-hairline);
+  border-right: 0;
+  border-radius: 2px 0 0 2px;
+  overflow: hidden;
+  background: var(--surface-sunk);
+}
+
+.castBar {
+  position: relative;
+  flex: 1;
+  border: 1px solid var(--gilt-hairline);
+  border-radius: 0 2px 2px 0;
+  background: var(--surface-sunk);
+  overflow: hidden;
+}
+
+.castFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(241, 234, 219, 0.5));
+  box-shadow: inset -2px 0 0 var(--ink);
+}
+
+.castRow {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.55cqw;
+  padding: 0 0.7cqw;
+  font-size: 1.07cqw;
+  font-weight: 600;
+  text-shadow: 0 1px 1px #00000099;
+}
+
+.castTime {
+  margin-left: auto;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Player frame ---------- */
+
+.player {
+  position: absolute;
+  left: 21cqw;
+  top: 36cqw;
+  width: 27cqw;
+  height: 2.9cqw;
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunk);
+  transition: opacity 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.playerClip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.mana {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  height: 0.18cqw;
+  max-width: calc(100% - 8px);
+  background: #4f78ff;
+}
+
+.anchorInset {
+  position: absolute;
+  inset: 0;
+  box-shadow: var(--inset-anchor);
+}
+
+.cornerTopLeft,
+.cornerBottomRight {
+  position: absolute;
+  width: 0.63cqw;
+  height: 0.63cqw;
+  background: var(--gilt);
+  transform: rotate(45deg);
+}
+
+.cornerTopLeft {
+  left: -0.36cqw;
+  top: -0.36cqw;
+}
+
+.cornerBottomRight {
+  right: -0.36cqw;
+  bottom: -0.36cqw;
+}
+
+.playerRow {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.55cqw;
+  padding: 0 0.9cqw;
+  text-shadow: 0 1px 1px #00000099;
+}
+
+.playerRole {
+  flex: none;
+  width: 1.25cqw;
+  height: 1.25cqw;
+}
+
+.playerName {
+  font-family: var(--font-display);
+  font-size: 1.43cqw;
+  letter-spacing: 0.02em;
+  color: #0070de;
+}
+
+.playerPct,
+.targetPct {
+  margin-left: auto;
+  font-size: 1.15cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Target frame ---------- */
+
+.target {
+  position: absolute;
+  left: 52cqw;
+  top: 36cqw;
+  width: 27cqw;
+  transition: opacity 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.targetBar {
+  position: relative;
+  height: 2.9cqw;
+  border: 1px solid var(--gilt-hairline);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunk);
+  overflow: hidden;
+}
+
+.targetRow {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.7cqw;
+  padding: 0 0.9cqw;
+  text-shadow: 0 1px 1px #00000099;
+}
+
+.targetMark {
+  flex: none;
+  width: 0.5cqw;
+  height: 0.5cqw;
+  background: var(--ink);
+  transform: rotate(45deg);
+}
+
+.targetName {
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 1.43cqw;
+  letter-spacing: 0.02em;
+}
+
+.targetLevel {
+  white-space: nowrap;
+  font-size: 1.07cqw;
+  font-weight: 600;
+}
+
+.targetCast {
+  margin-top: 0.18cqw;
+  height: 1.6cqw;
+  display: flex;
+  transition: opacity 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.enemyCastIcon {
+  position: relative;
+  flex: none;
+  width: 1.6cqw;
+  height: 1.6cqw;
+  border: 1px solid var(--arcane);
+  border-right: 0;
+  border-radius: 2px 0 0 2px;
+  overflow: hidden;
+  background: var(--surface-sunk);
+}
+
+.enemyCastBar {
+  position: relative;
+  flex: 1;
+  border: 1px solid var(--arcane);
+  border-radius: 0 2px 2px 0;
+  background: var(--surface-sunk);
+  box-shadow: var(--glow-arcane);
+  overflow: hidden;
+}
+
+.enemyCastFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #0f1a1f, rgba(63, 208, 255, 0.4));
+  box-shadow: inset -2px 0 0 var(--arcane);
+}
+
+.enemyCastRow {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.55cqw;
+  padding: 0 0.6cqw;
+  font-size: 0.98cqw;
+  font-weight: 600;
+  text-shadow: 0 1px 1px #00000099;
+}
+
+.interruptible {
+  margin-left: auto;
+  flex: none;
+  width: 1.05cqw;
+  height: 1.05cqw;
+}
+
+.enemyCastRow .castTime {
+  margin-left: 0;
+}
+
+/* ---------- Caption ---------- */
+
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px 2cqw;
+  padding: 1cqw 1.6cqw 1cqw 2.4cqw;
+  background: rgba(19, 17, 22, 0.9);
+  border-top: 1px solid var(--gilt-faint);
+}
+
+.captionLabel {
+  flex: none;
+  font-family: var(--font-display);
+  font-size: max(11px, 1.1cqw);
+  letter-spacing: 0.08em;
+  color: var(--gilt-text);
+}
+
+.captionText {
+  flex: 1;
+  min-width: 0;
+  font-size: max(12px, 1.35cqw);
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.toggle {
+  flex: none;
+  background: var(--surface-raised);
+}

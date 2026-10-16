@@ -1,0 +1,172 @@
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--gilt-faint);
+}
+
+.inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 14px var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* The wordmark: the logo image cropped to its lettering, beside the live mark. */
+.wordmark {
+  display: block;
+  flex: none;
+  width: 63.9px;
+  height: 30px;
+  overflow: hidden;
+}
+
+.wordmark img {
+  display: block;
+  height: 30px;
+  width: auto;
+  max-width: none;
+  margin-left: -30px;
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 24px;
+}
+
+.navLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navLink:hover {
+  color: var(--ink);
+}
+
+.active,
+.active:hover {
+  color: var(--gilt-text);
+}
+
+.marker {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  background: var(--gilt);
+  transform: rotate(45deg);
+}
+
+/* The diamond that follows the pointer along the nav */
+.floating {
+  left: 0;
+  pointer-events: none;
+}
+
+.gliding {
+  transition: left 180ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* The Download button pops once as the page arrives. */
+.pop {
+  animation: pop 420ms 250ms;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.86);
+    box-shadow: 0 0 0 2px var(--arcane), 0 0 16px var(--arcane);
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  43% {
+    transform: scale(1);
+  }
+  57%,
+  100% {
+    transform: scale(1);
+    box-shadow: var(--glow-arcane);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gliding,
+  .navLink {
+    transition: none;
+  }
+
+  .pop {
+    animation: none;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ---------- Community links: official marks in gilt diamonds ---------- */
+
+.community {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.social {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+.socialFrame {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 30px;
+  height: 30px;
+  background: var(--surface-raised);
+  border: 1px solid var(--gilt-line);
+  transform: rotate(45deg);
+  transition: border-color 120ms ease;
+}
+
+.social:hover .socialFrame {
+  border-color: var(--gilt);
+}
+
+.socialIcon {
+  position: relative;
+  display: block;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background: var(--gilt-line);
+}

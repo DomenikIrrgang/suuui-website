@@ -1,0 +1,276 @@
+/* ---------- Class buttons ---------- */
+
+.classes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.classButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 16px;
+  background: var(--surface-raised);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: var(--class);
+  transition: border-color 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.classButton:hover {
+  border-color: var(--gilt);
+}
+
+.classPressed,
+.classPressed:hover {
+  background: #0f1a1f;
+  border-color: var(--arcane);
+}
+
+.classMark {
+  width: 6px;
+  height: 6px;
+  background: var(--class);
+  transform: rotate(45deg);
+}
+
+/* ---------- Spec tabs ---------- */
+
+.tabs {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 28px;
+  border-bottom: 1px solid var(--gilt-faint);
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+
+.tab:hover {
+  color: var(--ink);
+}
+
+.tabActive,
+.tabActive:hover {
+  color: var(--gilt-text);
+}
+
+.tabRule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--gilt);
+}
+
+.tabMarker {
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  background: var(--gilt);
+  transform: rotate(45deg);
+}
+
+/* ---------- The Cooldown Manager in a fight ---------- */
+
+.stage {
+  margin: 32px 0 0;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  container-type: inline-size;
+  overflow: hidden;
+  background: var(--world);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-md);
+  box-shadow: inset 0 0 0 3px #131116e6, inset 0 0 0 4px #c9a75a1f;
+}
+
+.manager {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5cqw;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7cqw;
+  min-height: 4.2cqw;
+}
+
+.essentialRow {
+  display: flex;
+  justify-content: center;
+  gap: 0.9cqw;
+}
+
+.utilityRow {
+  display: flex;
+  justify-content: center;
+  gap: 0.5cqw;
+}
+
+.divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3cqw;
+  margin: 0 0.6cqw;
+}
+
+.dividerLine {
+  width: 1px;
+  height: 1.4cqw;
+  background: var(--gilt-line);
+}
+
+.dividerJewel {
+  width: 0.55cqw;
+  height: 0.55cqw;
+  background: var(--gilt);
+  transform: rotate(45deg);
+}
+
+/* ---------- Slots ---------- */
+
+.slot {
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid var(--gilt-hairline);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #15120f;
+  color: var(--ink);
+}
+
+.aura,
+.debuff,
+.utility {
+  width: 4.2cqw;
+  height: 4.2cqw;
+}
+
+.essential {
+  width: 5.6cqw;
+  height: 5.6cqw;
+}
+
+.essential,
+.utility {
+  border-color: var(--arcane);
+}
+
+.aura {
+  border-color: var(--gilt-hairline);
+}
+
+.art {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.sprite {
+  position: absolute;
+  max-width: none;
+  display: block;
+}
+
+.sweep {
+  position: absolute;
+  inset: 0;
+}
+
+.ring {
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--arcane);
+  border-radius: 1px;
+}
+
+.utility .ring {
+  inset: 2px;
+}
+
+.bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0.25cqw;
+  background: var(--ink);
+}
+
+.essential .bar {
+  height: 0.3cqw;
+}
+
+.timerDigits {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.35cqw;
+  text-align: center;
+  font-size: 1.3cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 2px #000, 0 1px 1px #000;
+}
+
+.cooldownDigits {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 2px #000, 0 1px 1px #000;
+}
+
+.essential .cooldownDigits {
+  font-size: 2cqw;
+}
+
+.toggle {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(19, 17, 22, 0.9);
+}
+
+.caption {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}

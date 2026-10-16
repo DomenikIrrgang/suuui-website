@@ -1,0 +1,138 @@
+.footer {
+  background: var(--surface);
+}
+
+.inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 56px var(--gutter) 40px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rule,
+.ruleReverse {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 167, 90, 0), var(--gilt-line));
+}
+
+.ruleReverse {
+  background: linear-gradient(90deg, var(--gilt-line), rgba(201, 167, 90, 0));
+}
+
+.jewel {
+  width: 8px;
+  height: 8px;
+  background: var(--surface);
+  border: 1px solid var(--gilt);
+  transform: rotate(45deg);
+}
+
+.top {
+  margin-top: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 64px;
+}
+
+.brand {
+  flex: 2 1 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.logo img {
+  height: 36px;
+  width: auto;
+}
+
+.tagline {
+  margin: 0;
+  max-width: 320px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.columns {
+  flex: 3 1 480px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: 32px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.columnTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  color: var(--gilt-text);
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  font-size: 15px;
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+.legal {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--gilt-faint);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 40px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.legal p {
+  margin: 0;
+}
+
+.copyright {
+  max-width: 460px;
+  font-variant-numeric: tabular-nums;
+}
+
+.disclaimer {
+  max-width: 560px;
+}

@@ -1,0 +1,25 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(84, 70, 56, 0.42), rgba(84, 70, 56, 0) 100%),
+    var(--surface);
+  opacity: 1;
+  transition: opacity 240ms cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+.loader[hidden] {
+  display: none;
+}
+
+.loader[data-leaving] {
+  opacity: 0;
+}
+
+.crest {
+  width: min(320px, 64%);
+}

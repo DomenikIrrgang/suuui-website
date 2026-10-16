@@ -1,0 +1,132 @@
+.layout {
+  padding-bottom: var(--section-y);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px 64px;
+}
+
+.layout > nav {
+  flex: 1 1 220px;
+}
+
+.navButton {
+  margin-top: 16px;
+}
+
+.entries {
+  flex: 999 1 560px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.entryHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--gilt-line);
+}
+
+.entryVersion {
+  font-size: clamp(26px, 2.4vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.entryDate {
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+}
+
+.entryLink {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.entryIntro {
+  margin-top: 24px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.groupTitle {
+  margin: 36px 0 12px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  color: var(--gilt-text);
+}
+
+.entryHead + section .groupTitle {
+  margin-top: 28px;
+}
+
+.entryIntro + section .groupTitle {
+  margin-top: 28px;
+}
+
+.items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.item {
+  display: flex;
+  gap: 14px;
+}
+
+.bullet {
+  margin-top: 11px;
+}
+
+.itemText {
+  min-width: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-muted);
+}
+
+/* A paragraph indented under an item, after its nested list */
+.itemAfter {
+  margin-top: 8px;
+}
+
+/* Text directly under a section heading, before its list */
+.sectionText {
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-muted);
+}
+
+.details {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail {
+  display: flex;
+  gap: 12px;
+}

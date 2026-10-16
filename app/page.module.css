@@ -1,0 +1,352 @@
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: var(--section-y) 0;
+}
+
+.heroInner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.crestHost {
+  display: block;
+  max-width: 100%;
+}
+
+.crest {
+  width: 147px;
+}
+
+.kicker {
+  margin-top: 28px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  color: var(--gilt-text);
+}
+
+.heroTitle {
+  margin-top: 16px;
+  font-size: clamp(44px, 5.4vw, 76px);
+  line-height: 1.05;
+}
+
+.heroLead {
+  margin-top: 24px;
+}
+
+.heroButtons {
+  margin-top: 36px;
+  justify-content: center;
+}
+
+.heroMeta {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.heroShot {
+  max-width: var(--page-max);
+  margin: clamp(40px, 5vw, 72px) auto 0;
+  padding: 0 var(--gutter);
+}
+
+.heroDemo {
+  position: relative;
+}
+
+.corner {
+  position: absolute;
+  z-index: 1;
+  width: 11px;
+  height: 11px;
+  background: var(--surface);
+  border: 1px solid var(--gilt);
+  transform: rotate(45deg);
+}
+
+.cornerTopLeft {
+  top: -6px;
+  left: -6px;
+}
+
+.cornerBottomRight {
+  bottom: -6px;
+  right: -6px;
+}
+
+/* ---------- Shared ---------- */
+
+.blockTop {
+  margin-top: 48px;
+}
+
+/* ---------- Why ---------- */
+
+.pillarDiamond {
+  margin: 2px 0 4px 2px;
+}
+
+/* ---------- Feature highlights ---------- */
+
+.highlights {
+  margin-top: 48px;
+  gap: 48px 24px;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.highlightText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ---------- Signals ---------- */
+
+.wideSublead {
+  max-width: 680px;
+}
+
+.signals {
+  margin-top: 48px;
+}
+
+.signal {
+  padding: 24px;
+}
+
+.signalTag {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 9px;
+  border-radius: var(--radius-sm);
+  background: var(--signal);
+  color: var(--on-signal);
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.healBar {
+  display: flex;
+  width: 120px;
+  height: 14px;
+  margin: 5px 0;
+  background: var(--surface-sunk);
+  border: 1px solid var(--gilt-hairline);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.healFill {
+  width: 56%;
+  background: linear-gradient(90deg, var(--unit-fill-deep), var(--unit-fill));
+}
+
+.healIncoming {
+  width: 20%;
+  background: var(--fel-incoming);
+}
+
+.signalTitle {
+  margin-top: 4px;
+  font-size: 20px;
+}
+
+.signalText {
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* ---------- What's new ---------- */
+
+.split {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 64px;
+}
+
+.splitIntro {
+  flex: 1 1 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.versionLine {
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.newLead {
+  max-width: 420px;
+}
+
+.newButton {
+  margin-top: 32px;
+  align-self: flex-start;
+}
+
+.newList {
+  flex: 999 1 520px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--gilt-faint);
+}
+
+.newItem {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid var(--gilt-faint);
+}
+
+.newDiamond {
+  margin-top: 9px;
+}
+
+/* ---------- Get started ---------- */
+
+.steps {
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--gilt-line);
+}
+
+.stepNumber {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepFrame {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--gilt);
+  transform: rotate(45deg);
+}
+
+.stepDigit {
+  position: relative;
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.startFoot {
+  margin-top: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+}
+
+.requirement {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Roadmap ---------- */
+
+.phases {
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--gilt-faint);
+}
+
+.phase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  padding: 28px 0;
+  border-top: 1px solid var(--gilt-faint);
+}
+
+.phaseHead {
+  flex: 1 1 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.phaseLabel {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+}
+
+.phaseItems {
+  flex: 999 1 520px;
+  min-width: 0;
+  gap: 12px;
+}
+
+/* ---------- Community ---------- */
+
+.communityCard {
+  padding: 32px;
+}
+
+.communityTitle {
+  font-size: 26px;
+  line-height: 1.25;
+}
+
+.communityText {
+  max-width: 440px;
+}
+
+.communityButton {
+  margin-top: 12px;
+}

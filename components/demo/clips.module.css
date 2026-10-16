@@ -1,0 +1,915 @@
+/* The motion clips. Everything is sized in cqw of the 16:10 stage. */
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+
+.unitFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, var(--unit-fill-deep), var(--unit-fill));
+}
+
+.ghost {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba(241, 234, 219, 0.5);
+}
+
+.incoming {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--fel-incoming);
+}
+
+.sweep {
+  position: absolute;
+  inset: 0;
+}
+
+.panel {
+  position: absolute;
+  padding: 2.4cqw;
+  background: rgba(19, 17, 22, 0.9);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-panel);
+}
+
+.panelHead {
+  display: flex;
+  align-items: baseline;
+  gap: 1.6cqw;
+  padding-bottom: 1.4cqw;
+  border-bottom: 1px solid var(--gilt-faint);
+}
+
+.panelTitle {
+  font-family: var(--font-display);
+  font-size: 3.2cqw;
+  letter-spacing: 0.08em;
+  color: var(--gilt-text);
+}
+
+.panelSub {
+  font-size: 2.6cqw;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+/* ---------- Party frames ---------- */
+
+.frame {
+  position: absolute;
+  left: 18cqw;
+  width: 64cqw;
+  height: 8.6cqw;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunk);
+  overflow: hidden;
+  transition: border-color 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.framePower {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0.6cqw;
+}
+
+.frameRow {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.8cqw;
+  padding: 0 2.4cqw;
+  text-shadow: 0 1px 1px #00000099;
+}
+
+.frameRole {
+  flex: none;
+  width: 3.4cqw;
+  height: 3.4cqw;
+}
+
+.frameName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 4cqw;
+  letter-spacing: 0.02em;
+}
+
+.magic {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  height: 4.4cqw;
+  padding: 0 1.4cqw;
+  border-radius: var(--radius-sm);
+  background: var(--dispel-magic);
+  color: var(--on-signal);
+  font-family: var(--font-display);
+  font-size: 3cqw;
+  letter-spacing: 0.04em;
+  text-shadow: none;
+}
+
+.framePct {
+  flex: none;
+  font-size: 3.6cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Cooldown Manager ---------- */
+
+.cdTimers,
+.cdEssential,
+.cdUtility {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.cdTimers {
+  top: 9cqw;
+  align-items: center;
+  gap: 1.4cqw;
+}
+
+.cdEssential {
+  top: 22cqw;
+  gap: 2cqw;
+}
+
+.cdUtility {
+  top: 37.5cqw;
+  gap: 1.4cqw;
+}
+
+.cdTimer,
+.cdBig,
+.cdSmall {
+  position: relative;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--surface-sunk);
+}
+
+.cdTimer,
+.cdSmall {
+  width: 9cqw;
+  height: 9cqw;
+}
+
+.cdSmall {
+  border-color: var(--arcane);
+}
+
+.cdBig {
+  width: 12cqw;
+  height: 12cqw;
+}
+
+.cdTimerBar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0.6cqw;
+  background: var(--ink);
+}
+
+.cdTimerTime {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.9cqw;
+  text-align: center;
+  font-size: 2.7cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 2px #000, 0 1px 1px #000;
+}
+
+.cdDigits {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4.2cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 2px #000, 0 1px 1px #000;
+}
+
+/* ---------- Nameplates ---------- */
+
+.npStage {
+  text-shadow: 0 1px 2px #000000cc;
+}
+
+.npTarget,
+.npOther {
+  position: absolute;
+  width: 34cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7cqw;
+}
+
+.npTarget {
+  left: 33cqw;
+  top: 5cqw;
+}
+
+.npOther {
+  opacity: 0.72;
+}
+
+.npAuras {
+  display: flex;
+  gap: 0.6cqw;
+}
+
+.npAura {
+  position: relative;
+  width: 4.6cqw;
+  height: 4.6cqw;
+  border: 1px solid var(--gilt-hairline);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-size: 116% 116%;
+  background-position: center;
+}
+
+.npAuraTime {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.2cqw;
+  text-align: center;
+  font-size: 1.9cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 2px #000, 0 1px 1px #000;
+}
+
+.npHead {
+  display: flex;
+  align-items: baseline;
+  gap: 1cqw;
+}
+
+.npHeadRow {
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+}
+
+.npName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 3.4cqw;
+  color: #ff0000;
+}
+
+.npPct {
+  margin-left: auto;
+  font-size: 2.9cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.npMarker {
+  flex: none;
+  width: 2.2cqw;
+  height: 2.2cqw;
+  background: var(--gilt);
+  transform: rotate(45deg);
+}
+
+.npCount {
+  font-size: 2.4cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--gilt-text);
+}
+
+.npBadge {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  height: 3.4cqw;
+  padding: 0 1cqw;
+  border-radius: var(--radius-sm);
+  color: var(--on-signal);
+  font-family: var(--font-display);
+  font-size: 2.4cqw;
+  letter-spacing: 0.04em;
+  text-shadow: none;
+}
+
+.npBar {
+  position: relative;
+  height: 3cqw;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunk);
+  overflow: hidden;
+  transition:
+    border-color 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.npCastArcane,
+.npCastLocked {
+  position: relative;
+  height: 2.2cqw;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunk);
+  overflow: hidden;
+}
+
+.npCastArcane {
+  border: 1px solid var(--arcane);
+  box-shadow: var(--glow-arcane);
+}
+
+.npCastLocked {
+  border: 1px solid var(--gilt-hairline);
+}
+
+.npCastArcaneFill,
+.npCastLockedFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.npCastArcaneFill {
+  background: linear-gradient(90deg, #0f1a1f, rgba(63, 208, 255, 0.4));
+  box-shadow: inset -2px 0 0 var(--arcane);
+}
+
+.npCastLockedFill {
+  background: linear-gradient(90deg, transparent, rgba(241, 234, 219, 0.5));
+  box-shadow: inset -2px 0 0 var(--ink);
+}
+
+.npLock {
+  position: absolute;
+  left: 0.4cqw;
+  top: 50%;
+  width: 1.8cqw;
+  height: 1.8cqw;
+  margin-top: -0.9cqw;
+}
+
+.npSpell {
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  font-size: 2.7cqw;
+  font-weight: 500;
+}
+
+.npSpellIcon {
+  flex: none;
+  width: 3cqw;
+  height: 3cqw;
+  border: 1px solid var(--gilt-hairline);
+  border-radius: var(--radius-sm);
+  background-size: 116% 116%;
+  background-position: center;
+}
+
+.npKick {
+  flex: none;
+  width: 1.8cqw;
+  height: 1.8cqw;
+  background: var(--arcane);
+  transform: rotate(45deg);
+  box-shadow: 0 0 6px #3fd0ff66;
+}
+
+.npTime {
+  margin-left: auto;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.npCastTarget {
+  display: flex;
+  align-items: center;
+  gap: 0.8cqw;
+  padding-left: 4cqw;
+  font-size: 2.7cqw;
+  font-weight: 500;
+}
+
+/* ---------- Damage meter ---------- */
+
+.meterClock {
+  margin-left: auto;
+  font-size: 2.8cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.meterRows {
+  margin-top: 1.4cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5cqw;
+}
+
+.meterRow {
+  position: relative;
+  height: 5.4cqw;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunk);
+  overflow: hidden;
+}
+
+.meterFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #342c22, #4d4335);
+}
+
+.meterLine {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.4cqw;
+  padding: 0 1.6cqw;
+}
+
+.meterRank {
+  flex: none;
+  width: 2.4cqw;
+  font-size: 2.3cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+}
+
+.meterMark {
+  flex: none;
+  width: 1.5cqw;
+  height: 1.5cqw;
+  transform: rotate(45deg);
+}
+
+.meterName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 3cqw;
+  text-shadow: 0 0 2px #000, 0 1px 1px #000;
+}
+
+.meterValue {
+  margin-left: auto;
+  flex: none;
+  font-size: 2.7cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 1px #000;
+}
+
+/* ---------- Group Finder ---------- */
+
+.lfgList {
+  position: relative;
+  margin-top: 1.6cqw;
+  height: 42cqw;
+}
+
+.lfgRow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 9.4cqw;
+  display: flex;
+  align-items: center;
+  gap: 2cqw;
+  padding: 0 2cqw;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+}
+
+.lfgText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4cqw;
+}
+
+.lfgTitle,
+.lfgSub {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lfgTitle {
+  font-size: 3cqw;
+  font-weight: 600;
+}
+
+.lfgSub {
+  font-size: 2.3cqw;
+  font-weight: 500;
+}
+
+.lfgSlots {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5cqw;
+}
+
+.lfgSlot {
+  width: 2.8cqw;
+  height: 2.8cqw;
+}
+
+.lfgSize {
+  flex: none;
+  width: 5cqw;
+  text-align: right;
+  font-size: 2.8cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Live settings ---------- */
+
+.settings {
+  position: absolute;
+  left: 4cqw;
+  top: 6cqw;
+  width: 92cqw;
+  height: 47cqw;
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-panel);
+  overflow: hidden;
+}
+
+.settingsBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2cqw;
+  padding: 3cqw;
+}
+
+.settingsTitle {
+  font-family: var(--font-display);
+  font-size: 3cqw;
+  letter-spacing: 0.08em;
+  color: var(--gilt-text);
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.4cqw;
+  padding: 2cqw 0;
+  border-top: 1px solid var(--gilt-faint);
+  border-bottom: 1px solid var(--gilt-faint);
+}
+
+.optionText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8cqw;
+}
+
+.optionLabel {
+  display: flex;
+  align-items: center;
+  gap: 1.2cqw;
+  font-size: 3cqw;
+  font-weight: 600;
+}
+
+.changedMark {
+  flex: none;
+  width: 1.3cqw;
+  height: 1.3cqw;
+  background: var(--ink);
+  transform: rotate(45deg);
+  transition: opacity 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.optionHelp {
+  font-size: 2.3cqw;
+  line-height: 1.4;
+  color: var(--ink-muted);
+}
+
+.switch {
+  position: relative;
+  flex: none;
+  width: 9.6cqw;
+  height: 5.1cqw;
+  margin-top: 0.4cqw;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+  transition:
+    background-color 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.knob {
+  position: absolute;
+  top: 1.4cqw;
+  left: 1.2cqw;
+  width: 2.2cqw;
+  height: 2.2cqw;
+  transition:
+    transform 120ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.preview {
+  flex: none;
+  width: 44cqw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.6cqw;
+  padding: 3cqw;
+  background: var(--world);
+  border-left: 1px solid var(--gilt-faint);
+}
+
+.previewUnit {
+  position: relative;
+  height: 6.2cqw;
+  border: 1px solid var(--gilt-hairline);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunk);
+  overflow: hidden;
+}
+
+.tint {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: var(--ember);
+}
+
+.previewRow {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.4cqw;
+  padding: 0 1.8cqw;
+  text-shadow: 0 1px 1px #00000099;
+}
+
+.previewName {
+  font-family: var(--font-display);
+  font-size: 3cqw;
+}
+
+.previewPct {
+  margin-left: auto;
+  font-size: 2.7cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Notifications ---------- */
+
+.toast {
+  position: absolute;
+  left: 18cqw;
+  width: 64cqw;
+  display: flex;
+  gap: 2cqw;
+  padding: 2.2cqw 2.2cqw 2.6cqw;
+  background: rgba(19, 17, 22, 0.9);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.toastIcon {
+  position: relative;
+  flex: none;
+  width: 6.4cqw;
+  height: 6.4cqw;
+  background: var(--surface-sunk);
+  border: 1px solid var(--gilt-hairline);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.toastIconGlyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toastGlyph {
+  width: 4cqw;
+  height: 4cqw;
+}
+
+.toastText {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4cqw;
+}
+
+.toastKind,
+.toastNote {
+  display: flex;
+  align-items: center;
+  gap: 0.8cqw;
+  font-size: 2.4cqw;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.toastNoteIcon {
+  width: 2.4cqw;
+  height: 2.4cqw;
+}
+
+.toastTitle {
+  font-size: 3cqw;
+  font-weight: 600;
+}
+
+.toastName {
+  font-family: var(--font-display);
+  font-size: 3.2cqw;
+  color: #69ccf0;
+}
+
+.onlineMark {
+  width: 1.1cqw;
+  height: 1.1cqw;
+  background: var(--arcane);
+  transform: rotate(45deg);
+}
+
+.toastActions {
+  flex: none;
+  align-self: center;
+  display: flex;
+  gap: 1cqw;
+}
+
+.toastButton {
+  display: flex;
+  align-items: center;
+  height: 5.2cqw;
+  padding: 0 2cqw;
+  background: var(--surface-raised);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-sm);
+  font-size: 2.4cqw;
+  font-weight: 600;
+}
+
+.drain {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0.45cqw;
+  background: var(--gilt-line);
+}
+
+/* ---------- Talents ---------- */
+
+.talents {
+  position: absolute;
+  left: 10cqw;
+  top: 4cqw;
+  width: 80cqw;
+  height: 54cqw;
+  display: flex;
+  flex-direction: column;
+  padding: 2.4cqw 3cqw;
+  background: var(--surface);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-panel);
+}
+
+.talentsLeft {
+  margin-left: auto;
+  font-size: 2.6cqw;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.talentGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 9cqw);
+  justify-content: center;
+  align-content: center;
+  gap: 2.6cqw 7cqw;
+}
+
+.talent {
+  position: relative;
+  width: 9cqw;
+  height: 9cqw;
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunk);
+  transition: border-color 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.talentArt {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 1px;
+}
+
+.talentRank {
+  position: absolute;
+  right: -1.2cqw;
+  bottom: -1.2cqw;
+  padding: 0.2cqw 0.8cqw;
+  background: var(--surface);
+  border: 1px solid;
+  border-radius: var(--radius-sm);
+  font-size: 2.2cqw;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.talentButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.4cqw;
+  padding-top: 1.4cqw;
+  border-top: 1px solid var(--gilt-faint);
+}
+
+.talentUndo,
+.talentApply {
+  display: flex;
+  align-items: center;
+  height: 5.6cqw;
+  padding: 0 2.6cqw;
+  border-radius: var(--radius-sm);
+  font-size: 2.5cqw;
+  font-weight: 600;
+}
+
+.talentUndo {
+  background: var(--surface-raised);
+  border: 1px solid var(--gilt-line);
+}
+
+.talentApply {
+  background: var(--arcane);
+  color: var(--on-signal);
+}

@@ -1,0 +1,196 @@
+/* Tokens follow the SuuUI design system's names (tokens.json). */
+:root {
+  --surface: #131116;
+  --surface-sunk: #15120f;
+  --surface-raised: #1c1815;
+  --world: #141926;
+
+  --gilt: #c9a75a;
+  --gilt-text: #e6cc8a;
+  --gilt-line: rgba(201, 167, 90, 0.38);
+  --gilt-hairline: rgba(201, 167, 90, 0.3);
+  --gilt-faint: rgba(201, 167, 90, 0.14);
+
+  --ink: #f1eadb;
+  --ink-muted: #a39b8b;
+  --on-signal: #120e0b;
+
+  --arcane: #3fd0ff;
+  --ember: #ff5a36;
+  --amber: #ffb23f;
+  --fel-incoming: rgba(157, 255, 92, 0.4);
+  --ward: #f4e7c1;
+  --dispel-magic: #4f9bff;
+  --unit-fill: #6e604b;
+  --unit-fill-deep: #4a3f31;
+
+  --radius-sm: 2px;
+  --radius-md: 3px;
+
+  --shadow-panel: 0 12px 30px #00000066;
+  --inset-anchor: inset 0 0 0 3px #131116e6, inset 0 0 0 4px #c9a75a1f;
+  --glow-arcane: 0 0 8px #3fd0ff66;
+
+  --font-display: var(--font-marcellus), "Cormorant SC", Georgia, serif;
+  --font-sans: var(--font-figtree), "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Page layout */
+  --page-max: 1200px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --section-y: clamp(56px, 6vw, 88px);
+  --section-y-tight: clamp(40px, 5vw, 72px);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  background: var(--surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/*
+ * The page background: a warm soft light behind the top of the page, then fainter pools of it every
+ * 1600px down the page, over the base surface. The body::after vignette darkens the page's edges.
+ */
+body {
+  position: relative;
+  margin: 0;
+  background:
+    radial-gradient(ellipse 900px 520px at 50% 330px, rgba(84, 70, 56, 0.42), rgba(84, 70, 56, 0) 100%) center top /
+      100% 100% no-repeat,
+    radial-gradient(ellipse 1100px 600px at 50% 800px, rgba(84, 70, 56, 0.22), rgba(84, 70, 56, 0) 100%) 0 500px /
+      100% 1600px repeat-y,
+    var(--surface);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Links and buttons press down a pixel when clicked. */
+header a,
+main a,
+main button,
+footer a {
+  transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+header a:active,
+main a:active,
+main button:active,
+footer a:active {
+  transform: translateY(1px);
+}
+
+/* Set by ScrollReveal on sections that start below the first screen. */
+.reveal-pre {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.reveal-in {
+  transition:
+    opacity 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header a:active,
+  main a:active,
+  main button:active,
+  footer a:active {
+    transform: none;
+  }
+
+  .reveal-pre {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: radial-gradient(ellipse 110% 80% at 50% 45%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+a {
+  color: var(--arcane);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--ink);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--arcane);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+
+img,
+svg {
+  display: block;
+}
+
+/* Section targets clear the header when jumped to. */
+[id] {
+  scroll-margin-top: 24px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  margin: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 10;
+  padding: 12px 16px;
+  background: var(--arcane);
+  color: var(--on-signal);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
