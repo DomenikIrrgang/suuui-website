@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { JumpNav, Disclosure, DisclosureGroup, DisclosureList, OpenAllButton } from "@/components/Mobile";
 import { SectionNav } from "@/components/SectionNav";
-import { Code, Container, Heading, PageIntro } from "@/components/ui";
+import { ButtonLink, Code, Container, cx, Heading, PageIntro } from "@/components/ui";
 import { getReleaseData } from "@/lib/releases";
 import { links } from "@/lib/site";
 import s from "./page.module.css";
@@ -168,7 +169,7 @@ export default async function FaqPage() {
   const topics = getTopics(interfaceVersion);
 
   return (
-    <>
+    <DisclosureGroup>
       <PageIntro
         eyebrow="FAQ"
         title="Questions and answers"
@@ -178,27 +179,55 @@ export default async function FaqPage() {
             <a href={links.issues}>GitHub</a>.
           </>
         }
+      >
+        <OpenAllButton open="Open every answer" close="Close every answer" className="mobile-only" />
+      </PageIntro>
+
+      <JumpNav
+        label="On this page"
+        className="mobile-only"
+        items={topics.map((topic) => ({ href: `#${topic.id}`, label: topic.title }))}
       />
 
       <Container className={s.layout}>
         <SectionNav title="Topics" items={topics.map((topic) => ({ id: topic.id, label: topic.title }))} />
 
         <div className={s.topics}>
-          {topics.map((topic) => (
+          {topics.map((topic, topicIndex) => (
             <section key={topic.id} id={topic.id} aria-labelledby={`${topic.id}-title`}>
               <Heading id={`${topic.id}-title`} className={s.topicTitle}>
                 {topic.title}
               </Heading>
               {topic.questions.map((item) => (
-                <div key={item.q} className={s.question}>
+                <div key={item.q} className={cx(s.question, "desktop-only")}>
                   <h3 className={s.q}>{item.q}</h3>
                   <p className={s.a}>{item.a}</p>
                 </div>
               ))}
+              <DisclosureList className={cx(s.questions, "mobile-only")}>
+                {topic.questions.map((item, i) => (
+                  <Disclosure key={item.q} title={item.q} size="question" defaultOpen={topicIndex === 0 && i === 0}>
+                    <p>{item.a}</p>
+                  </Disclosure>
+                ))}
+              </DisclosureList>
             </section>
           ))}
         </div>
       </Container>
-    </>
+
+      <section aria-labelledby="stuck-title" className={cx(s.stuckSection, "mobile-only")}>
+        <div className={s.stuck}>
+          <h2 id="stuck-title" className={s.stuckTitle}>
+            Still stuck?
+          </h2>
+          <p className={s.stuckText}>Ask on Discord, or report it on GitHub with what you did and what happened.</p>
+          <div className={s.stuckButtons}>
+            <ButtonLink href={links.discord}>Discord</ButtonLink>
+            <ButtonLink href={links.issues}>Report a bug</ButtonLink>
+          </div>
+        </div>
+      </section>
+    </DisclosureGroup>
   );
 }

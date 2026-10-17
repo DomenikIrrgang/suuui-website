@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { SectionNav } from "@/components/SectionNav";
-import { ButtonLink, Container, PageIntro, Tag } from "@/components/ui";
+import { ButtonLink, Container, cx, PageIntro, Tag } from "@/components/ui";
 import { getReleaseData } from "@/lib/releases";
 import { formatDate, releaseAnchor } from "@/lib/site";
+import { ChangelogPhone } from "./ChangelogPhone";
 import { ReleaseNotes } from "./ReleaseNotes";
 import s from "./page.module.css";
 
@@ -19,10 +20,17 @@ export default async function ChangelogPage() {
       <PageIntro
         eyebrow="Changelog"
         title="What's changed"
-        lead="Every release, newest first, written for players: what you'll notice in game."
+        lead={
+          <>
+            Every release, <span className="desktop-only">newest first, </span>written for players: what you&apos;ll
+            notice in game.
+          </>
+        }
       />
 
-      <Container className={s.layout}>
+      <ChangelogPhone releases={releases} />
+
+      <Container className={cx(s.layout, "desktop-only")}>
         <SectionNav
           title="Versions"
           numeric

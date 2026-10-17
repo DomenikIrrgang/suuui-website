@@ -77,7 +77,7 @@
   text-wrap: pretty;
 }
 
-.stepTitle + .paragraph {
+.stepBody > .paragraph:first-of-type {
   margin-top: 10px;
 }
 
@@ -128,3 +128,166 @@
   color: var(--ink-muted);
 }
 
+
+/* ---------- Phone: a checklist to tick off ---------- */
+
+.progress {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progressTrack {
+  flex: 1;
+  height: 4px;
+  background: #2a2520;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressFill {
+  display: block;
+  height: 100%;
+  background: var(--arcane);
+  transition: width 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.progressLabel {
+  flex: none;
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+}
+
+.doneButton {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 44px;
+  height: 36px;
+  padding: 0 10px;
+  background: var(--surface-raised);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-sm);
+  color: var(--ink-muted);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.doneButtonOn {
+  background: #0f1a1f;
+  border-color: var(--arcane);
+  color: var(--arcane);
+}
+
+.onComputer {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gilt-text);
+}
+
+@media (max-width: 720px) {
+  .stepsSection {
+    padding: 28px 0 32px;
+  }
+
+  .step {
+    padding: 18px 0;
+    gap: 14px;
+  }
+
+  .step:first-child {
+    border-top: 0;
+  }
+
+  .stepText {
+    flex-basis: 100%;
+    gap: 14px;
+  }
+
+  .number {
+    width: 36px;
+    height: 36px;
+  }
+
+  .numberFrame {
+    top: 5px;
+    left: 5px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .numberDigit {
+    font-size: 14px;
+  }
+
+  .stepBody {
+    flex: 1;
+  }
+
+  .titleRow {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .stepTitle {
+    flex: 1;
+    font-size: 21px;
+  }
+
+  .paragraph,
+  .stepBody > .paragraph:first-of-type {
+    margin-top: 6px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .stepDone {
+    opacity: 0.62;
+  }
+
+  .stepDone .numberFrame {
+    background: var(--gilt);
+  }
+
+  .stepDone .numberDigit {
+    color: var(--on-signal);
+  }
+
+  .nextSection {
+    padding: 32px 0 44px;
+  }
+
+  .next {
+    gap: 10px;
+  }
+
+  .nextCard {
+    gap: 4px;
+    padding: 18px 16px;
+  }
+
+  .nextTitle {
+    font-size: 19px;
+  }
+
+  .nextText {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressFill {
+    transition: none;
+  }
+}

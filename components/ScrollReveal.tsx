@@ -37,7 +37,10 @@ export function ScrollReveal() {
         },
         { threshold: [0, 0.06] },
       );
-      const sections = Array.from(main.children).filter((el) => el.tagName === "SECTION").slice(1);
+      // Sections only the other layout shows (desktop or phone) are left out.
+      const sections = Array.from(main.children)
+        .filter((el) => el.tagName === "SECTION" && getComputedStyle(el).display !== "none")
+        .slice(1);
       for (const el of sections) observer.observe(el);
     }, 60);
     return () => {

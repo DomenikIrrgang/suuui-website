@@ -169,3 +169,94 @@
 .reportButtons {
   margin-top: 24px;
 }
+
+/* ---------- Phone ---------- */
+
+@media (max-width: 720px) {
+  .version {
+    font-size: 14px;
+  }
+
+  .listsSection,
+  .issuesSection {
+    padding: 40px 0;
+  }
+
+  .lists {
+    gap: 16px;
+  }
+
+  .panel {
+    padding: 20px 16px;
+  }
+
+  .panelTitle {
+    font-size: 22px;
+  }
+
+  .addon {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .addonName,
+  .addonText {
+    flex: none;
+  }
+
+  .openIssues {
+    margin-top: 20px;
+    padding: 20px 16px;
+    gap: 14px;
+  }
+
+  .openIssuesText {
+    flex-basis: 100%;
+    font-size: 15px;
+  }
+
+  .openIssuesButton {
+    flex: 1 1 100%;
+  }
+
+  .unconfirmedTitle {
+    margin-top: 36px;
+    font-size: 21px;
+  }
+
+  .unconfirmedIntro {
+    font-size: 15px;
+  }
+
+  .unconfirmedRow {
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 0;
+  }
+
+  .unconfirmedName,
+  .unconfirmedText {
+    flex: none;
+  }
+
+  .reportSection {
+    padding: 40px 0 44px;
+  }
+
+  .report {
+    padding: 20px 16px;
+  }
+
+  .reportTitle {
+    font-size: 21px;
+  }
+
+  .reportSteps {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .reportButtons {
+    margin-top: 20px;
+  }
+}

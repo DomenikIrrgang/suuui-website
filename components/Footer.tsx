@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { links } from "@/lib/site";
+import { ViewDesktopSite, ViewMobileSite } from "./LayoutSwitch";
+import { cx } from "./ui";
 import s from "./Footer.module.css";
 
 const columns = [
@@ -71,6 +73,13 @@ export function Footer() {
               </div>
             ))}
           </nav>
+        </div>
+
+        <div className={cx(s.desktopSwitch, "mobile-only")}>
+          <ViewDesktopSite variant="button" />
+        </div>
+        <div className={s.mobileSwitch}>
+          <ViewMobileSite />
         </div>
 
         <div className={s.legal}>

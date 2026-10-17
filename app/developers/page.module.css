@@ -153,3 +153,78 @@
   margin-top: 10px;
   max-width: 560px;
 }
+
+/* ---------- Phone ---------- */
+
+@media (max-width: 720px) {
+  .introButtons {
+    margin-top: 24px;
+  }
+
+  .split {
+    gap: 28px;
+  }
+
+  .paragraph {
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .pluginList {
+    margin-top: 16px;
+  }
+
+  .resources {
+    margin-top: 24px;
+  }
+
+  .resourceLink {
+    font-size: 15px;
+  }
+
+  .buildCode {
+    margin-top: 18px;
+  }
+
+  .buildCode pre {
+    padding: 16px;
+  }
+
+  .tree {
+    margin-top: 14px;
+  }
+
+  .treeRow {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .treePath {
+    flex: none;
+    font-size: 13px;
+  }
+
+  .treeText {
+    flex: none;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .contribute {
+    padding: 20px 16px;
+    gap: 18px;
+  }
+
+  .contribute > div {
+    width: 100%;
+  }
+
+  .contributeText {
+    flex-basis: 100%;
+  }
+
+  .contributeTitle {
+    font-size: 24px;
+  }
+}

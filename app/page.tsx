@@ -7,6 +7,7 @@ import { ClipNameplates } from "@/components/demo/ClipNameplates";
 import { ClipWorldMap } from "@/components/demo/ClipWorldMap";
 import { LiveHud } from "@/components/demo/LiveHud";
 import { Crest, markHost } from "@/components/Mark";
+import { DesktopOnly } from "@/components/Responsive";
 import {
   Body,
   ButtonLink,
@@ -28,51 +29,78 @@ import {
 } from "@/components/ui";
 import { getReleaseData } from "@/lib/releases";
 import { formatDate, links } from "@/lib/site";
+import {
+  MobileDemo,
+  MobileDiscord,
+  MobileFeatures,
+  MobileNews,
+  MobileReady,
+  MobileRoadmap,
+  MobileSignals,
+  MobileWhy,
+  type MobilePhase,
+} from "./HomeMobile";
 import s from "./page.module.css";
 
 const pillars = [
   {
     title: "One design system",
+    short: "Every colour, size and motion comes from one set of tokens.",
     text: "Every colour, size, font and motion comes from shared design tokens. Nothing is styled ad hoc, so every part of the UI reads the same way.",
   },
   {
     title: "Modular",
+    short: "Switch any part off and Blizzard's own frame comes back.",
     text: "Every feature is a module you can switch off, and Blizzard's own frame comes back in its place. Plugins use the very same public API as the built-in modules.",
   },
   {
     title: "Combat-safe",
+    short: "It never reads what the game hides, so no taint and no errors when you pull.",
     text: "Built around the values the game hides from addons in combat: SuuUI never reads them, it hands them to the game to draw. No taint, no errors when you pull, in dungeons and raids too.",
   },
 ];
 
-const highlights: { title: string; text: string; Clip: ComponentType }[] = [
+/** `short` and `href`: on a phone each highlight is a link to its part of the Features page. */
+const highlights: { title: string; text: string; short: string; href: string; Clip: ComponentType }[] = [
   {
     title: "Unit and group frames",
+    short: "Debuffs you can remove and defensives beside each bar.",
+    href: "/features#frames",
     text: "Player, target, focus and boss frames, and group frames up to 40 players. Debuffs you can remove show by type and defensives beside each bar, even in combat.",
     Clip: ClipFrames,
   },
   {
     title: "Cooldown Manager",
+    short: "Ready-made presets for every class and spec.",
+    href: "/features#combat",
     text: "Your cooldowns, procs and auras with ready-made presets for every class and spec, plus sounds and conditions on anything.",
     Clip: ClipCooldowns,
   },
   {
     title: "Nameplates",
+    short: "Your debuffs, threat and the casts you can interrupt.",
+    href: "/features#frames",
     text: "Your debuffs, threat badges, casts with their interrupt state and quest objective marks on every enemy plate.",
     Clip: ClipNameplates,
   },
   {
     title: "Damage and threat meters",
+    short: "From the game's own combat data.",
+    href: "/features#combat",
     text: "Damage, healing, interrupts, dispels and deaths from the game's own combat data, and a threat meter for your group.",
     Clip: ClipMeters,
   },
   {
     title: "World map",
+    short: "Pins for quests, dungeons, trainers and rares.",
+    href: "/features#map",
     text: "Pins for everything around you: quests you can pick up, dungeon entrances with their levels, flight masters, trainers and rares. Hover a quest and its pins stand out.",
     Clip: ClipWorldMap,
   },
   {
     title: "Group Finder",
+    short: "Groups from the finder and public chat in one list.",
+    href: "/features#windows",
     text: "One list of groups from the game's group finder and from public chat in English, Korean and Chinese, with what each group still needs.",
     Clip: ClipGroupFinder,
   },
@@ -116,13 +144,16 @@ const signals: { tag: string; color?: string; title: string; text: string }[] = 
   },
 ];
 
-const newInBeta = [
+/** On a phone the items with a `short` text show first, and the rest once opened. */
+const newInBeta: { title: string; text: string; short?: string }[] = [
   {
     title: "World map.",
+    short: "Forever's map in SuuUI's look, with your quest log beside it.",
     text: "Forever's world map in SuuUI's look. It opens large in the middle of the screen, with your quest log beside it and the world still in view.",
   },
   {
     title: "Map pins.",
+    short: "Quests, dungeons, trainers and rares, with filters.",
     text: "Quests you can pick up, dungeon and raid entrances with their levels, flight masters, trainers, rares and treasures, with filters in the map's header.",
   },
   {
@@ -131,6 +162,7 @@ const newInBeta = [
   },
   {
     title: "Defensives and Warded.",
+    short: "Group frames show real defensives, and the big ones mark the frame.",
     text: "Party and raid frames show real defensives, from a list you control, and the big ones mark the frame Warded.",
   },
   {
@@ -218,6 +250,25 @@ const roadmap: { phase: string; title: string; items: { status: Status; text: st
   },
 ];
 
+/** Where things stand, in three lines, for the phone layout's roadmap card. */
+const roadmapSummary = {
+  done: "The combat HUD, everyday play, Blizzard's windows and the world map",
+  next: "Merchant, mail and trainer, first versions in testing; then the auction house and collections",
+  later: "Density and accessibility presets, a performance and taint pass, a plugin developer kit, and 1.0",
+};
+
+const lowerFirst = (text: string) => text.charAt(0).toLowerCase() + text.slice(1);
+
+/** Each phase as one line of text, with what's next in it named after what's done. */
+const mobilePhases: MobilePhase[] = roadmap.map((phase, i) => {
+  const done = phase.items.filter((item) => item.status === "done").map((item) => item.text);
+  const next = phase.items.filter((item) => item.status === "next").map((item) => lowerFirst(item.text));
+  const planned = phase.items.filter((item) => item.status === "planned").map((item) => item.text);
+  const status = next.length > 0 ? "In progress" : planned.length > 0 ? "Planned" : "Done";
+  const text = [...done, ...planned].join(". ") + (next.length > 0 ? `. Next: ${next.join("; ")}.` : "");
+  return { number: i, title: phase.title, status, text };
+});
+
 export default async function HomePage() {
   const { latest: latestRelease, interfaceVersion } = await getReleaseData();
 
@@ -234,18 +285,28 @@ export default async function HomePage() {
           <Heading level={1} id="hero-title" className={s.heroTitle}>
             Quiet until it matters
           </Heading>
-          <Lead className={s.heroLead}>
+          <Lead className={cx(s.heroLead, "desktop-only")}>
             SuuUI replaces WoW Forever&apos;s default interface with one consistent UI. Frames stay calm and legible,
             and colour, glow and motion appear only when something needs you: a cooldown coming ready, a debuff you
             can remove on your tank, a cast you can interrupt.
           </Lead>
-          <ButtonRow className={s.heroButtons}>
+          <Lead className={cx(s.heroLead, "mobile-only")}>
+            One consistent interface for WoW Forever. Calm until something needs you: a cooldown coming ready, a
+            debuff on your tank, a cast you can interrupt.
+          </Lead>
+          <ButtonRow className={cx(s.heroButtons, "desktop-only")}>
             <ButtonLink href="/download" variant="primary">
               {download}
             </ButtonLink>
             <ButtonLink href="/features">Explore the features</ButtonLink>
           </ButtonRow>
-          <div className={s.heroMeta}>
+          <div className={cx(s.heroButtonsPhone, "mobile-only")}>
+            <ButtonLink href="/features" variant="primary">
+              Explore the features
+            </ButtonLink>
+            <ButtonLink href="/download">Get it on your computer</ButtonLink>
+          </div>
+          <div className={cx(s.heroMeta, "desktop-only")}>
             <span className={s.tabular}>
               {latestRelease.channel} · released {formatDate(latestRelease.date, "short")}
             </span>
@@ -254,17 +315,24 @@ export default async function HomePage() {
               Also on <a href={links.curseforge}>CurseForge</a> and <a href={links.wago}>Wago</a>
             </span>
           </div>
+          <p className={cx(s.heroMetaPhone, "mobile-only")}>
+            {latestRelease.channel} {latestRelease.version} · Free and open source
+          </p>
         </div>
-        <div className={s.heroShot}>
+        <div className={cx(s.heroShot, "desktop-only")}>
           <div className={s.heroDemo}>
             <span aria-hidden="true" className={cx(s.corner, s.cornerTopLeft)} />
             <span aria-hidden="true" className={cx(s.corner, s.cornerBottomRight)} />
-            <LiveHud />
+            <DesktopOnly>
+              <LiveHud />
+            </DesktopOnly>
           </div>
         </div>
       </section>
 
-      <Section aria-labelledby="why-title" band>
+      <MobileDemo />
+
+      <Section aria-labelledby="why-title" band className="desktop-only">
         <SectionHeader eyebrow="Why SuuUI" title="One interface, built for the client as it is" id="why-title" />
         <Grid className={s.blockTop}>
           {pillars.map((pillar) => (
@@ -277,7 +345,9 @@ export default async function HomePage() {
         </Grid>
       </Section>
 
-      <Section aria-labelledby="features-title">
+      <MobileWhy pillars={pillars} />
+
+      <Section aria-labelledby="features-title" className="desktop-only">
         <SectionHeader
           eyebrow="Features"
           title="Everything you watch in a fight, and everything between pulls"
@@ -287,23 +357,27 @@ export default async function HomePage() {
           From unit frames and nameplates to bags, chat, the world map and Blizzard&apos;s own windows, every frame is
           rebuilt in one design.
         </Sublead>
-        <Grid min={320} className={s.highlights}>
-          {highlights.map((item) => (
-            <article key={item.title} className={s.highlight}>
-              <item.Clip />
-              <div className={s.highlightText}>
-                <Heading level={3}>{item.title}</Heading>
-                <Body>{item.text}</Body>
-              </div>
-            </article>
-          ))}
-        </Grid>
+        <DesktopOnly>
+          <Grid min={320} className={s.highlights}>
+            {highlights.map((item) => (
+              <article key={item.title} className={s.highlight}>
+                <item.Clip />
+                <div className={s.highlightText}>
+                  <Heading level={3}>{item.title}</Heading>
+                  <Body>{item.text}</Body>
+                </div>
+              </article>
+            ))}
+          </Grid>
+        </DesktopOnly>
         <div className={s.blockTop}>
           <ButtonLink href="/features">See every feature</ButtonLink>
         </div>
       </Section>
 
-      <Section aria-labelledby="signals-title" band>
+      <MobileFeatures features={highlights.map(({ title, short, href }) => ({ title, short, href }))} />
+
+      <Section aria-labelledby="signals-title" band className="desktop-only">
         <SectionHeader eyebrow="The design" title="Colour always means something" id="signals-title" />
         <Sublead className={s.wideSublead}>
           Everything sits in quiet neutrals until it has something to say. Each colour on screen is one of six
@@ -331,7 +405,11 @@ export default async function HomePage() {
         </Grid>
       </Section>
 
-      <Section aria-labelledby="new-title">
+      <MobileSignals signals={signals} />
+
+      <MobileDiscord />
+
+      <Section aria-labelledby="new-title" className="desktop-only">
         <div className={s.split}>
           <div className={s.splitIntro}>
             <SectionHeader eyebrow="What's new" title="New in this beta" id="new-title" />
@@ -359,7 +437,12 @@ export default async function HomePage() {
         </div>
       </Section>
 
-      <Section aria-labelledby="start-title" band>
+      <MobileNews
+        versionLine={`Version ${latestRelease.version} · ${formatDate(latestRelease.date)}`}
+        items={newInBeta}
+      />
+
+      <Section aria-labelledby="start-title" band className="desktop-only">
         <SectionHeader eyebrow="Get started" title="Three steps to a new interface" id="start-title" />
         <Grid as="ol" className={s.steps}>
           {steps.map((step, i) => (
@@ -384,8 +467,11 @@ export default async function HomePage() {
 
       <Section id="roadmap" aria-labelledby="roadmap-title">
         <SectionHeader eyebrow="Roadmap" title="Where SuuUI is going" id="roadmap-title" />
-        <Sublead>Built in small steps, each one confirmed in game before the next begins.</Sublead>
-        <ol className={s.phases}>
+        <Sublead className="desktop-only">
+          Built in small steps, each one confirmed in game before the next begins.
+        </Sublead>
+        <MobileRoadmap phases={mobilePhases} summary={roadmapSummary} />
+        <ol className={cx(s.phases, "desktop-only")}>
           {roadmap.map((phase) => (
             <li key={phase.phase} className={s.phase}>
               <div className={s.phaseHead}>
@@ -398,7 +484,7 @@ export default async function HomePage() {
         </ol>
       </Section>
 
-      <Section aria-labelledby="community-title" band>
+      <Section aria-labelledby="community-title" band className="desktop-only">
         <h2 id="community-title" className="visually-hidden">
           Community and support
         </h2>
@@ -428,6 +514,8 @@ export default async function HomePage() {
           </Card>
         </Grid>
       </Section>
+
+      <MobileReady />
     </>
   );
 }

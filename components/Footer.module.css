@@ -136,3 +136,67 @@
 .disclaimer {
   max-width: 560px;
 }
+
+/* Where the desktop layout was chosen on a phone, the way back sits above the small print. */
+:global(html[data-layout="desktop"]) .mobileSwitch {
+  margin-top: 40px;
+}
+
+/* ---------- Phone ---------- */
+
+@media (max-width: 720px) {
+  .inner {
+    padding: 40px var(--gutter) 32px;
+  }
+
+  .top {
+    margin-top: 28px;
+    gap: 28px;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+
+  .columns {
+    flex-basis: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 16px;
+  }
+
+  .column {
+    gap: 4px;
+  }
+
+  /* Developers runs across the bottom, its links side by side. */
+  .column:last-child {
+    grid-column: 1 / -1;
+    padding-top: 16px;
+    border-top: 1px solid var(--gilt-faint);
+  }
+
+  .column:last-child .list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0 20px;
+  }
+
+  .link {
+    min-height: 44px;
+  }
+
+  .desktopSwitch {
+    margin-top: 24px;
+  }
+
+  .legal {
+    margin-top: 28px;
+    padding-top: 20px;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

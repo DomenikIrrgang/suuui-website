@@ -7,9 +7,12 @@ import { ClipNotifications } from "@/components/demo/ClipNotifications";
 import { ClipTalents } from "@/components/demo/ClipTalents";
 import { ClipWorldMap } from "@/components/demo/ClipWorldMap";
 import { PresetsDemo } from "@/components/demo/PresetsDemo";
+import { JumpNav, Disclosure, DisclosureGroup, DisclosureList, OpenAllButton } from "@/components/Mobile";
+import { DesktopOnly } from "@/components/Responsive";
 import {
   ButtonLink,
   Body,
+  cx,
   Diamond,
   Grid,
   Heading,
@@ -19,6 +22,7 @@ import {
   Sublead,
   TextLink,
 } from "@/components/ui";
+import { presets } from "@/lib/presets";
 import { getReleaseData } from "@/lib/releases";
 import s from "./page.module.css";
 
@@ -211,14 +215,27 @@ export default async function FeaturesPage() {
   const { latest: latestRelease } = await getReleaseData();
 
   return (
-    <>
+    <DisclosureGroup>
       <PageIntro
         eyebrow="Features"
         title="Every frame, rebuilt"
         leadWidth={700}
-        lead="Unit frames, nameplates, action bars, cooldowns, casts and auras share one visual language and stay quiet until something needs you. Every feature is a module you can switch off, and Blizzard's own frame comes back in its place."
+        lead={
+          <>
+            <span className="mobile-only">
+              One visual language for every frame, quiet until something needs you. Every feature is a module you can
+              switch off.
+            </span>
+            <span className="desktop-only">
+              Unit frames, nameplates, action bars, cooldowns, casts and auras share one visual language and stay
+              quiet until something needs you. Every feature is a module you can switch off, and Blizzard&apos;s own
+              frame comes back in its place.
+            </span>
+          </>
+        }
       >
-        <nav aria-label="On this page" className={s.jumpNav}>
+        <OpenAllButton open="Open every feature" close="Close every feature" className="mobile-only" />
+        <nav aria-label="On this page" className={cx(s.jumpNav, "desktop-only")}>
           {groups.map((group) => (
             <Fragment key={group.id}>
               <Link href={`#${group.id}`} className={s.jumpLink}>
@@ -237,7 +254,19 @@ export default async function FeaturesPage() {
         </nav>
       </PageIntro>
 
-      {groups.map((group) => (
+      <JumpNav
+        label="On this page"
+        className="mobile-only"
+        items={[
+          ...groups.flatMap((group) => [
+            { href: `#${group.id}`, label: group.title },
+            ...(group.id === "combat" ? [{ href: "#presets", label: "Presets" }] : []),
+          ]),
+          { href: "#next", label: "Coming next" },
+        ]}
+      />
+
+      {groups.map((group, groupIndex) => (
         <Fragment key={group.id}>
           <Section id={group.id} aria-labelledby={`${group.id}-title`} tight band={group.band}>
             <div className={s.groupHead}>
@@ -245,10 +274,29 @@ export default async function FeaturesPage() {
               <Heading id={`${group.id}-title`}>{group.title}</Heading>
             </div>
             <Sublead className={s.groupIntro}>{group.intro}</Sublead>
-            <div className={s.groupShot}>
-              <group.Clip ratio="21 / 9" />
+            <div className={cx(s.groupShot, "desktop-only")}>
+              <DesktopOnly>
+                <group.Clip ratio="21 / 9" />
+              </DesktopOnly>
             </div>
-            <Grid min={320} className={s.featureGrid}>
+            <DisclosureList className="mobile-only">
+              {group.features.map((feature, i) => (
+                <Disclosure
+                  key={feature.title}
+                  title={feature.title}
+                  isNew={feature.isNew}
+                  defaultOpen={groupIndex === 0 && i === 0}
+                >
+                  <p>{feature.text}</p>
+                  {feature.link && (
+                    <p>
+                      <Link href={feature.link.href}>{feature.link.label}</Link>
+                    </p>
+                  )}
+                </Disclosure>
+              ))}
+            </DisclosureList>
+            <Grid min={320} className={cx(s.featureGrid, "desktop-only")}>
               {group.features.map((feature) => (
                 <article key={feature.title} className={s.feature}>
                   {feature.isNew ? (
@@ -281,11 +329,38 @@ export default async function FeaturesPage() {
                 <Heading id="presets-title">Presets</Heading>
               </div>
               <Sublead className={s.groupIntro}>
-                Every class and spec starts with a ready-made Cooldown Manager. Pick yours to watch it in a fight: procs
-                lighting up, debuffs ticking on the target, cooldowns counting down and popping back ready.
+                <span className="desktop-only">
+                  Every class and spec starts with a ready-made Cooldown Manager. Pick yours to watch it in a fight:
+                  procs lighting up, debuffs ticking on the target, cooldowns counting down and popping back ready.
+                </span>
+                <span className="mobile-only">
+                  Every class and spec starts with a ready-made Cooldown Manager, built from the game&apos;s own spell
+                  data.
+                </span>
               </Sublead>
-              <div className={s.groupShot}>
-                <PresetsDemo />
+              <div className={cx(s.groupShot, "desktop-only")}>
+                <DesktopOnly>
+                  <PresetsDemo />
+                </DesktopOnly>
+              </div>
+              <div className="mobile-only">
+                <DisclosureList>
+                  <Disclosure title="What a preset tracks">
+                    <p>
+                      Procs that light up as they come, your buffs and your debuffs on the target, the essentials you
+                      press most, and the utility row under them. Change any of it in Frames › Cooldown Manager.
+                    </p>
+                  </Disclosure>
+                </DisclosureList>
+                <ul aria-label="Classes with presets" className={s.classes}>
+                  {presets.map((presetClass) => (
+                    <li key={presetClass.id} className={s.classChip} style={{ color: presetClass.color }}>
+                      <span aria-hidden="true" className={s.classDiamond} />
+                      {presetClass.name}
+                    </li>
+                  ))}
+                </ul>
+                <p className={s.presetsNote}>Watch each spec&apos;s preset play through a fight on a bigger screen.</p>
               </div>
             </Section>
           )}
@@ -298,11 +373,12 @@ export default async function FeaturesPage() {
             <Heading id="next-title" className={s.nextTitle}>
               Coming next
             </Heading>
-            <Body className={s.nextText}>
+            <Body className={cx(s.nextText, "desktop-only")}>
               SuuUI grows in small steps, each one confirmed in game before the next begins.
             </Body>
             <ButtonLink href="/download" variant="primary" className={s.nextButton}>
-              Download {latestRelease.version}
+              <span className="desktop-only">Download {latestRelease.version}</span>
+              <span className="mobile-only">Get it on your computer</span>
             </ButtonLink>
           </div>
           <StatusList
@@ -319,6 +395,6 @@ export default async function FeaturesPage() {
           />
         </div>
       </Section>
-    </>
+    </DisclosureGroup>
   );
 }

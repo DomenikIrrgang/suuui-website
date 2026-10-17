@@ -350,3 +350,46 @@
 .communityButton {
   margin-top: 12px;
 }
+
+/* ---------- Phone ---------- */
+
+.heroButtonsPhone {
+  margin-top: 28px;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.heroMetaPhone {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding: 40px 0 32px;
+  }
+
+  .crest {
+    width: 132px;
+  }
+
+  .kicker {
+    margin-top: 22px;
+    font-size: 14px;
+  }
+
+  .heroTitle {
+    margin-top: 10px;
+    font-size: 38px;
+    line-height: 1.08;
+  }
+
+  .heroLead {
+    margin-top: 16px;
+  }
+}

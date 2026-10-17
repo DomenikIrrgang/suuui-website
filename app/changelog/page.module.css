@@ -130,3 +130,262 @@
   display: flex;
   gap: 12px;
 }
+
+/* ---------- Phone: one release at a time ---------- */
+
+.phoneContainer {
+  padding: 0 var(--gutter);
+}
+
+.phonePicker {
+  padding-bottom: 24px;
+}
+
+.phoneLabel {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  color: var(--gilt-text);
+}
+
+.phoneSelectWrap {
+  position: relative;
+  margin-top: 6px;
+}
+
+.phoneSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  min-height: 52px;
+  padding: 0 44px 0 14px;
+  background: var(--surface-raised);
+  color: var(--ink);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.phoneSelectChevron {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  margin-top: -9px;
+  color: var(--gilt);
+  pointer-events: none;
+}
+
+.phoneRelease {
+  padding: 28px 0 40px;
+}
+
+.phoneHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--gilt-line);
+}
+
+.phoneVersion {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.phoneDate {
+  font-size: 14px;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.phoneHead .phoneDate {
+  flex-basis: 100%;
+}
+
+.phoneIntro {
+  margin-top: 18px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.phoneSection {
+  border-bottom: 1px solid var(--gilt-faint);
+}
+
+.phoneSectionHeading {
+  margin: 0;
+}
+
+.phoneSectionButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--gilt-text);
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  text-align: left;
+  cursor: pointer;
+}
+
+.phoneSectionTitle {
+  flex: 1;
+}
+
+.phoneSectionCount {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.phoneChevron {
+  flex: none;
+  color: var(--gilt);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flipped {
+  transform: rotate(180deg);
+}
+
+.phoneSectionBody {
+  padding-bottom: 18px;
+}
+
+/* A section without a heading isn't folded; it keeps a little room above. */
+.phoneSection > .sectionText:first-child,
+.phoneSection > .items:first-child {
+  margin-top: 18px;
+}
+
+.phoneSection:not([aria-label]) > :last-child {
+  margin-bottom: 18px;
+}
+
+.phoneGithub {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.phoneAll {
+  padding: 32px 0 0;
+}
+
+.phoneAllTitle {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.phoneAllButton {
+  margin-top: 8px;
+}
+
+.phoneOthers {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--gilt-faint);
+}
+
+.phoneOther {
+  padding: 14px 0 2px;
+  border-bottom: 1px solid var(--gilt-faint);
+}
+
+.phoneOtherHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.phoneOtherVersion {
+  font-size: 17px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.phoneOtherSummary {
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+.phoneRead {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--arcane);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.phoneRead:hover {
+  color: var(--ink);
+}
+
+.phoneDownload {
+  padding: 32px 0 44px;
+}
+
+.phoneDownloadButton {
+  width: 100%;
+}
+
+@media (max-width: 720px) {
+  .items {
+    gap: 14px;
+  }
+
+  .item {
+    gap: 12px;
+  }
+
+  .bullet {
+    margin-top: 10px;
+  }
+
+  .itemText,
+  .sectionText {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phoneChevron {
+    transition: none;
+  }
+}

@@ -2,7 +2,7 @@ import { Code, Diamond, Strong } from "@/components/ui";
 import type { Inline, NoteItem, ReleaseNotes as Notes } from "@/lib/release-notes";
 import s from "./page.module.css";
 
-function Text({ parts }: { parts: Inline[] }) {
+export function Text({ parts }: { parts: Inline[] }) {
   return parts.map((part, i) => {
     switch (part.kind) {
       case "strong":
@@ -23,7 +23,7 @@ function Text({ parts }: { parts: Inline[] }) {
   });
 }
 
-function Items({ items, nested = false }: { items: NoteItem[]; nested?: boolean }) {
+export function Items({ items, nested = false }: { items: NoteItem[]; nested?: boolean }) {
   return (
     <ul className={nested ? s.details : s.items}>
       {items.map((item, i) => (

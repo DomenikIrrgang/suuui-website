@@ -1,0 +1,64 @@
+.toDesktop {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.link {
+  background: none;
+  border: 0;
+  color: var(--arcane);
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+.button {
+  min-height: 48px;
+  background: var(--surface-raised);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+}
+
+.button:hover {
+  border-color: var(--gilt);
+}
+
+:global(html[data-layout="desktop"]) .toDesktop {
+  display: none;
+}
+
+/* Only where the desktop layout was chosen on a phone. */
+.toMobile {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  background: var(--surface-raised);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toMobile:hover {
+  border-color: var(--gilt);
+}
+
+:global(html[data-layout="desktop"]) .toMobile {
+  display: inline-flex;
+}

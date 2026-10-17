@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { LayoutKeeper, layoutScript } from "@/components/LayoutSwitch";
 import { PageLoader } from "@/components/PageLoader";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
@@ -46,8 +47,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${marcellus.variable} ${figtree.variable}`}>
+    // The layout script may mark <html> before React starts (see LayoutSwitch).
+    <html lang="en" className={`${marcellus.variable} ${figtree.variable}`} suppressHydrationWarning>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: layoutScript }} />
         <PageLoader />
         <a href="#main" className="skip-link">
           Skip to content
@@ -56,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <Footer />
         <ScrollReveal />
+        <LayoutKeeper />
       </body>
     </html>
   );

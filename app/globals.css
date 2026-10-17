@@ -50,6 +50,31 @@
   color-scheme: dark;
 }
 
+/*
+ * Phones: max-width 720px, everywhere it applies (CSS can't share a media query through a variable).
+ * The phone layout follows the mobile design: tighter gutters and sections, and less on screen at once.
+ */
+@media (max-width: 720px) {
+  :root {
+    --gutter: 20px;
+    --section-y: 40px;
+    --section-y-tight: 32px;
+  }
+}
+
+/* Parts of a page that only one layout shows. */
+@media (max-width: 720px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+@media (min-width: 721px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -138,6 +163,22 @@ body::after {
   background: radial-gradient(ellipse 110% 80% at 50% 45%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.55) 100%);
 }
 
+/* On a phone the light is smaller and closer together, and the vignette softer. */
+@media (max-width: 720px) {
+  body {
+    background:
+      radial-gradient(ellipse 420px 340px at 50% 250px, rgba(84, 70, 56, 0.42), rgba(84, 70, 56, 0) 100%) center top /
+        100% 100% no-repeat,
+      radial-gradient(ellipse 480px 420px at 50% 600px, rgba(84, 70, 56, 0.2), rgba(84, 70, 56, 0) 100%) 0 400px /
+        100% 1200px repeat-y,
+      var(--surface);
+  }
+
+  body::after {
+    background: radial-gradient(ellipse 120% 70% at 50% 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.35) 100%);
+  }
+}
+
 a {
   color: var(--arcane);
   text-underline-offset: 3px;
@@ -172,6 +213,13 @@ svg {
 /* Section targets clear the header when jumped to. */
 [id] {
   scroll-margin-top: 24px;
+}
+
+/* On a phone, jump targets also clear the sticky jump bar of the pages that have one. */
+@media (max-width: 720px) {
+  [id] {
+    scroll-margin-top: 72px;
+  }
 }
 
 .visually-hidden {

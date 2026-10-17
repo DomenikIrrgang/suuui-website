@@ -3,7 +3,9 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ClipCooldowns } from "@/components/demo/ClipCooldowns";
 import { ClipSettings } from "@/components/demo/ClipSettings";
+import { DesktopOnly } from "@/components/Responsive";
 import { BandJewel, bandClass, Code, Container, cx, Heading, PageIntro } from "@/components/ui";
+import { DoneButton, GuideProgress, ProgressBar, Step } from "./GuideProgress";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -100,28 +102,42 @@ const next = [
 
 export default function GuidePage() {
   return (
-    <>
+    <GuideProgress count={steps.length}>
       <PageIntro
         eyebrow="Getting started"
         title="Your first ten minutes"
         compact
         leadWidth={700}
-        lead="SuuUI works the moment it loads. These steps make it yours: the right size, your frames where you want them, your keys, your cooldowns, and a profile for every role you play."
-      />
+        lead={
+          <>
+            <span className="desktop-only">
+              SuuUI works the moment it loads. These steps make it yours: the right size, your frames where you want
+              them, your keys, your cooldowns, and a profile for every role you play.
+            </span>
+            <span className="mobile-only">Keep this open next to the game and tick off each step as you go.</span>
+          </>
+        }
+      >
+        <ProgressBar />
+      </PageIntro>
 
       <section aria-label="Steps" className={cx(s.stepsSection, bandClass)}>
         <BandJewel />
         <Container>
           <ol className={s.steps}>
             {steps.map((step, i) => (
-              <li key={step.title} className={s.step}>
+              <Step key={step.title} index={i}>
                 <div className={s.stepText}>
                   <span aria-hidden="true" className={s.number}>
                     <span className={s.numberFrame} />
                     <span className={s.numberDigit}>{i + 1}</span>
                   </span>
                   <div className={s.stepBody}>
-                    <Heading className={s.stepTitle}>{step.title}</Heading>
+                    <div className={s.titleRow}>
+                      <Heading className={s.stepTitle}>{step.title}</Heading>
+                      <DoneButton index={i} title={step.title} />
+                    </div>
+                    {i === 0 && <span className={cx(s.onComputer, "mobile-only")}>On your computer</span>}
                     {step.text.map((paragraph, j) => (
                       <p key={j} className={s.paragraph}>
                         {paragraph}
@@ -129,8 +145,12 @@ export default function GuidePage() {
                     ))}
                   </div>
                 </div>
-                {step.clip && <div className={s.stepClip}>{step.clip}</div>}
-              </li>
+                {step.clip && (
+                  <div className={cx(s.stepClip, "desktop-only")}>
+                    <DesktopOnly>{step.clip}</DesktopOnly>
+                  </div>
+                )}
+              </Step>
             ))}
           </ol>
         </Container>
@@ -149,6 +169,6 @@ export default function GuidePage() {
           ))}
         </Container>
       </section>
-    </>
+    </GuideProgress>
   );
 }

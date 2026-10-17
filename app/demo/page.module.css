@@ -1,0 +1,58 @@
+/* The demo covers the whole screen, above the header and footer, and the page behind it doesn't scroll. */
+:global(html):has(.overlay) {
+  overflow: hidden;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  background: #0b0a0d;
+}
+
+/* The HUD is 16:9: as large as the screen allows either way. */
+.stage {
+  width: min(100vw, calc(100dvh * 16 / 9));
+}
+
+.hint {
+  max-width: 260px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top));
+  left: max(12px, env(safe-area-inset-left));
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(19, 17, 22, 0.9);
+  border: 1px solid var(--gilt-line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+}
+
+.close:hover {
+  color: var(--ink);
+  border-color: var(--gilt);
+}
+
+/* Sideways, or on any screen wider than it is tall, the HUD fills the height and the hint goes. */
+@media (orientation: landscape) {
+  .hint {
+    display: none;
+  }
+}
