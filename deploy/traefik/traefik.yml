@@ -24,6 +24,10 @@ entryPoints:
           - main: suuui.dev
             sans:
               - www.suuui.dev
+          # wowlua.dev runs as its own Compose project (/opt/wowlua) on the same droplet.
+          - main: wowlua.dev
+            sans:
+              - www.wowlua.dev
 
 certificatesResolvers:
   letsencrypt:

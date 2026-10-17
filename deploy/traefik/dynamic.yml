@@ -10,11 +10,27 @@ http:
       middlewares: [www-to-apex]
       service: noop@internal
 
+    # wowlua.dev: the wowlua stack in /opt/wowlua, on the same `web` network.
+    wowlua:
+      rule: Host(`wowlua.dev`)
+      entryPoints: [websecure]
+      service: wowlua
+    wowlua-www:
+      rule: Host(`www.wowlua.dev`)
+      entryPoints: [websecure]
+      middlewares: [wowlua-www-to-apex]
+      service: noop@internal
+
   middlewares:
     www-to-apex:
       redirectRegex:
         regex: "^https://www\\.suuui\\.dev/(.*)"
         replacement: "https://suuui.dev/${1}"
+        permanent: true
+    wowlua-www-to-apex:
+      redirectRegex:
+        regex: "^https://www\\.wowlua\\.dev/(.*)"
+        replacement: "https://wowlua.dev/${1}"
         permanent: true
 
   services:
@@ -22,3 +38,7 @@ http:
       loadBalancer:
         servers:
           - url: http://app:3000
+    wowlua:
+      loadBalancer:
+        servers:
+          - url: http://wowlua-app:3000
