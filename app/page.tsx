@@ -304,7 +304,7 @@ export default async function HomePage() {
             releaseNotes: `${SITE}/changelog`,
             license: "https://opensource.org/licenses/MIT",
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-            sameAs: [links.github, links.curseforge, links.wago],
+            sameAs: [links.github, links.curseforge, links.wago, links.discord],
           },
         ]}
       />

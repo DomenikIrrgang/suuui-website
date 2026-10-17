@@ -14,8 +14,7 @@ export const links = {
   wowluaBadge: "https://wowlua.dev/badge/built-with-wowlua-dark.svg",
   curseforge: "https://www.curseforge.com/wow/addons/suuui",
   wago: "https://addons.wago.io/addons/suuui",
-  // TODO: replace with the real invite once the Discord server exists.
-  discord: "https://discord.gg/YOUR-INVITE",
+  discord: "https://discord.gg/JkdTrRXdDw",
 } as const;
 
 export function releaseUrl(version: string) {
