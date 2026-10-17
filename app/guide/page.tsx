@@ -9,6 +9,7 @@ import { DoneButton, GuideProgress, ProgressBar, Step } from "./GuideProgress";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/guide" },
   title: "Getting started",
   description:
     "Your first ten minutes with SuuUI: the right size, your frames where you want them, your keys, your cooldowns, and a profile for every role you play.",

@@ -29,6 +29,7 @@ import s from "./page.module.css";
 type ClipProps = { ratio?: "16 / 10" | "21 / 9" };
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/features" },
   title: "Features",
   description:
     "Unit frames, nameplates, action bars, cooldowns, casts and auras in one visual language, plus the world map, chat, bags and Blizzard's windows.",

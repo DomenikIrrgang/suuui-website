@@ -33,7 +33,6 @@ const columns = [
       { label: "Build a plugin", href: "/developers" },
       { label: "Plugin API", href: links.apiDocs },
       { label: "Source on GitHub", href: links.github },
-      { label: "Built with wowlua", href: links.wowlua },
     ],
   },
 ];
@@ -56,6 +55,11 @@ export function Footer() {
               <Image src="/brand/suuui-logo.svg" alt="" width={113} height={36} />
             </Link>
             <p className={s.tagline}>A full interface replacement for WoW Forever. Quiet until it matters.</p>
+            {/* The badge wowlua.dev offers every addon built with it, embedded the way they would. */}
+            <a href={links.wowlua} className={s.badge}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={links.wowluaBadge} alt="built with wowlua" width={194} height={36} loading="lazy" />
+            </a>
           </div>
 
           <nav aria-label="Footer" className={s.columns}>

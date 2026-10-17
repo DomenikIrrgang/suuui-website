@@ -19,6 +19,7 @@ import { links } from "@/lib/site";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/compatibility" },
   title: "Compatibility and known issues",
   description:
     "What SuuUI works alongside, what overlaps with it, and what's still being checked in this beta of the WoW Forever addon.",

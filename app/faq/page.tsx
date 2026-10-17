@@ -4,11 +4,14 @@ import type { ReactNode } from "react";
 import { JumpNav, Disclosure, DisclosureGroup, DisclosureList, OpenAllButton } from "@/components/Mobile";
 import { SectionNav } from "@/components/SectionNav";
 import { ButtonLink, Code, Container, cx, Heading, PageIntro } from "@/components/ui";
+import { JsonLd } from "@/components/JsonLd";
 import { getReleaseData } from "@/lib/releases";
+import { textOf } from "@/lib/seo";
 import { links } from "@/lib/site";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/faq" },
   title: "FAQ",
   description: "Answers to what players ask most about SuuUI: installing, combat, layouts, settings and getting help.",
 };
@@ -170,6 +173,19 @@ export default async function FaqPage() {
 
   return (
     <DisclosureGroup>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: topics.flatMap((t) =>
+            t.questions.map((q) => ({
+              "@type": "Question",
+              name: q.q,
+              acceptedAnswer: { "@type": "Answer", text: textOf(q.a).replace(/\s+/g, " ").trim() },
+            })),
+          ),
+        }}
+      />
       <PageIntro
         eyebrow="FAQ"
         title="Questions and answers"

@@ -59,6 +59,24 @@
   width: auto;
 }
 
+.badge {
+  display: inline-flex;
+  margin-top: 4px;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.badge:hover,
+.badge:focus-visible {
+  opacity: 1;
+}
+
+.badge img {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
 .tagline {
   margin: 0;
   max-width: 320px;

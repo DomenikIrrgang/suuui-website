@@ -8,6 +8,7 @@ import { ReleaseNotes } from "./ReleaseNotes";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/changelog" },
   title: "Changelog",
   description: "Every SuuUI release, newest first, written for players: what you'll notice in game.",
 };

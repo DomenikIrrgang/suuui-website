@@ -11,6 +11,7 @@ export const links = {
   examplePlugin: `${repo}/tree/main/Examples/SuuUI_HelloPlugin`,
   diagnostics: `${repo}/tree/main/src/Diagnostics`,
   wowlua: "https://wowlua.dev",
+  wowluaBadge: "https://wowlua.dev/badge/built-with-wowlua-dark.svg",
   curseforge: "https://www.curseforge.com/wow/addons/suuui",
   wago: "https://addons.wago.io/addons/suuui",
   // TODO: replace with the real invite once the Discord server exists.

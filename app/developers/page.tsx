@@ -18,6 +18,7 @@ import { links } from "@/lib/site";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/developers" },
   title: "Developers",
   description:
     "Build plugins for SuuUI with the same public API its own modules use, or build SuuUI from source with wowlua.",

@@ -7,6 +7,7 @@ import { ZipCountdown } from "./ZipCountdown";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/download/zip" },
   title: "Downloading",
   description: "Your SuuUI download is starting. Here's how to install it from the zip.",
   // It starts a download by itself, so keep it out of search results.

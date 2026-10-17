@@ -3,6 +3,7 @@ import { BandJewel, bandClass, ButtonLink, Container, Heading, PageIntro, Strong
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/in-combat" },
   title: "What SuuUI can show in combat",
   description:
     "During combat WoW Forever keeps many values secret from addons. What SuuUI shows live in every fight, what only between pulls, and what no addon can show.",

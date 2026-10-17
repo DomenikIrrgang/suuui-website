@@ -4,6 +4,7 @@ import { LiveHud } from "@/components/demo/LiveHud";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/demo" },
   title: "Live demo",
   description: "SuuUI's HUD through one dungeon pull, on a loop: the whole interface in a fight.",
 };

@@ -1,4 +1,5 @@
 import type { ComponentType, CSSProperties, ReactNode } from "react";
+import type { Metadata } from "next";
 import { ClipCooldowns } from "@/components/demo/ClipCooldowns";
 import { ClipFrames } from "@/components/demo/ClipFrames";
 import { ClipGroupFinder } from "@/components/demo/ClipGroupFinder";
@@ -27,7 +28,9 @@ import {
   TextLink,
   type Status,
 } from "@/components/ui";
+import { JsonLd } from "@/components/JsonLd";
 import { getReleaseData } from "@/lib/releases";
+import { SITE } from "@/lib/seo";
 import { formatDate, links } from "@/lib/site";
 import {
   MobileDemo,
@@ -269,6 +272,10 @@ const mobilePhases: MobilePhase[] = roadmap.map((phase, i) => {
   return { number: i, title: phase.title, status, text };
 });
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default async function HomePage() {
   const { latest: latestRelease, interfaceVersion } = await getReleaseData();
 
@@ -276,6 +283,31 @@ export default async function HomePage() {
 
   return (
     <>
+      <JsonLd
+        data={[
+          { "@context": "https://schema.org", "@type": "WebSite", name: "SuuUI", url: SITE },
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "SuuUI",
+            description:
+              "A full interface replacement for WoW Forever: unit frames, nameplates, action bars, cooldowns and Blizzard's windows in one visual language. Free, open source, and built to work in combat, dungeons and raids.",
+            url: SITE,
+            image: `${SITE}/opengraph-image.png`,
+            applicationCategory: "GameApplication",
+            applicationSubCategory: "World of Warcraft addon",
+            operatingSystem: "Windows, macOS",
+            softwareRequirements: `World of Warcraft: WoW Forever (interface ${interfaceVersion})`,
+            softwareVersion: latestRelease.version,
+            datePublished: latestRelease.date,
+            downloadUrl: latestRelease.zipUrl,
+            releaseNotes: `${SITE}/changelog`,
+            license: "https://opensource.org/licenses/MIT",
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+            sameAs: [links.github, links.curseforge, links.wago],
+          },
+        ]}
+      />
       <section aria-labelledby="hero-title" className={s.hero}>
         <div className={s.heroInner}>
           <span aria-hidden="true" className={cx(s.crestHost, markHost)}>

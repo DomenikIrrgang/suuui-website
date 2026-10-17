@@ -21,6 +21,7 @@ import { EarlierReleases } from "./EarlierReleases";
 import s from "./page.module.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/download" },
   title: "Download",
   description: "Get SuuUI for WoW Forever from GitHub, CurseForge or Wago Addons. Free and open source.",
 };
