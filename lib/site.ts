@@ -10,7 +10,7 @@ export const links = {
   lfgDocs: `${repo}/blob/main/Docs/ForeverLFG.md`,
   examplePlugin: `${repo}/tree/main/Examples/SuuUI_HelloPlugin`,
   diagnostics: `${repo}/tree/main/src/Diagnostics`,
-  wowlua: "https://github.com/DomenikIrrgang/wowlua",
+  wowlua: "https://wowlua.dev",
   curseforge: "https://www.curseforge.com/wow/addons/suuui",
   wago: "https://addons.wago.io/addons/suuui",
   // TODO: replace with the real invite once the Discord server exists.

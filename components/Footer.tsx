@@ -33,6 +33,7 @@ const columns = [
       { label: "Build a plugin", href: "/developers" },
       { label: "Plugin API", href: links.apiDocs },
       { label: "Source on GitHub", href: links.github },
+      { label: "Built with wowlua", href: links.wowlua },
     ],
   },
 ];
