@@ -1,5 +1,5 @@
 // Releases come straight from GitHub: the version, date, channel, notes and zip of every release.
-// Pages that use them are static and refreshed in the background at most once an hour, so a new
+// Pages that use them are static and refreshed in the background at most every five minutes, so a new
 // release shows up on the site by itself, without a code change or a redeploy.
 import { cache } from "react";
 import { parseReleaseNotes, summarize, type ReleaseNotes } from "./release-notes";
@@ -7,7 +7,7 @@ import { links, releaseUrl } from "./site";
 
 const REPO = "DomenikIrrgang/suuui";
 /** How often, in seconds, the site checks GitHub for new releases. */
-const REVALIDATE = 3600;
+const REVALIDATE = 300;
 
 export type Release = {
   version: string;
