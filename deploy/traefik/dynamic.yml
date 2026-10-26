@@ -20,6 +20,11 @@ http:
       entryPoints: [websecure]
       middlewares: [wowlua-www-to-apex]
       service: noop@internal
+    # registry.wowlua.dev: the package registry, the wowlua stack's second service.
+    wowlua-registry:
+      rule: Host(`registry.wowlua.dev`)
+      entryPoints: [websecure]
+      service: wowlua-registry
 
   middlewares:
     www-to-apex:
@@ -42,3 +47,7 @@ http:
       loadBalancer:
         servers:
           - url: http://wowlua-app:3000
+    wowlua-registry:
+      loadBalancer:
+        servers:
+          - url: http://wowlua-registry:8080

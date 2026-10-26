@@ -24,10 +24,11 @@ entryPoints:
           - main: suuui.dev
             sans:
               - www.suuui.dev
-          # wowlua.dev runs as its own Compose project (/opt/wowlua) on the same droplet.
+          # wowlua.dev runs as its own Compose project (/opt/wowlua) on the same droplet;
+          # the wildcard covers www and registry (the DNS challenge can issue it).
           - main: wowlua.dev
             sans:
-              - www.wowlua.dev
+              - "*.wowlua.dev"
 
 certificatesResolvers:
   letsencrypt:

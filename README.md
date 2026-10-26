@@ -81,8 +81,9 @@ docker run -p 3000:3000 suuui-website
 https://suuui.dev runs on the `suuui` droplet (fra1) as a Docker Compose stack in `/opt/suuui`: Traefik in front,
 with a Let's Encrypt certificate for `suuui.dev` and `www.suuui.dev` (DNS challenge through DigitalOcean DNS), and
 the app behind it. `www` redirects to the apex.
-The same Traefik also serves https://wowlua.dev for the separate `wowlua` stack in `/opt/wowlua` (deployed by
-the wowlua-website repository), which joins this stack's `web` network as `wowlua-app`.
+The same Traefik also serves https://wowlua.dev and https://registry.wowlua.dev for the separate `wowlua` stack in
+`/opt/wowlua` (deployed by the wowlua-website repository), which joins this stack's `web` network as `wowlua-app` and
+`wowlua-registry`; its certificate is `wowlua.dev` plus `*.wowlua.dev`.
 
 Every push to `main` runs `.github/workflows/deploy.yml`, which:
 
